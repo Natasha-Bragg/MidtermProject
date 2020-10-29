@@ -1,1 +1,3 @@
 rootProject.name = 'TableTennis'
+
+includeFlat 'JPATableTennisProject'
