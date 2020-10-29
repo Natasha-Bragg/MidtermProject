@@ -8,9 +8,9 @@ import javax.persistence.Id;
 public class User {
 
 	@Id
-	@GeneratedValue	
+	@GeneratedValue
 	private int id;
-	
+
 	private String username;
 
 	public String getUsername() {
@@ -44,5 +44,5 @@ public class User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 }

@@ -13,8 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class UserTest {
-	
-	
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	private User user;
@@ -43,8 +42,8 @@ class UserTest {
 
 	@Test
 	void test() {
-assertNotNull(user);
-assertEquals("admin", user.getUsername());
-}
+		assertNotNull(user);
+		assertEquals("admin", user.getUsername());
+	}
 
 }
