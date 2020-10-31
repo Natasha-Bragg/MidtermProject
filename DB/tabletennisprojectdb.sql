@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   `city` VARCHAR(45) NULL,
   `state` CHAR(2) NULL,
   `zip` VARCHAR(45) NULL,
+  `enabled` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -39,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `skill_level` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `level_name` VARCHAR(45) NULL,
   `description` TEXT NULL,
+  `enabled` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -91,6 +93,7 @@ CREATE TABLE IF NOT EXISTS `game` (
   `player_two_id` INT NOT NULL,
   `winner_id` INT NOT NULL,
   `address_id` INT NOT NULL,
+  `enabled` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_game_user1_idx` (`player_one_id` ASC),
   INDEX `fk_game_user2_idx` (`player_two_id` ASC),
@@ -127,6 +130,7 @@ DROP TABLE IF EXISTS `favorite_users` ;
 CREATE TABLE IF NOT EXISTS `favorite_users` (
   `user_id` INT NOT NULL,
   `favorite_id` INT NOT NULL,
+  `enabled` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`user_id`, `favorite_id`),
   INDEX `fk_user_has_user_user2_idx` (`favorite_id` ASC),
   INDEX `fk_user_has_user_user1_idx` (`user_id` ASC),
@@ -154,6 +158,7 @@ CREATE TABLE IF NOT EXISTS `player_rating` (
   `rated_user_id` INT NOT NULL,
   `rating` INT NULL,
   `comment` TEXT NULL,
+  `enabled` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_player_rating_user1_idx` (`user_id` ASC),
   INDEX `fk_player_rating_user2_idx` (`rated_user_id` ASC),
@@ -180,6 +185,7 @@ CREATE TABLE IF NOT EXISTS `team` (
   `name` VARCHAR(45) NULL,
   `description` TEXT NULL,
   `logo_url` VARCHAR(5000) NULL,
+  `enabled` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -192,6 +198,7 @@ DROP TABLE IF EXISTS `team_member` ;
 CREATE TABLE IF NOT EXISTS `team_member` (
   `user_id` INT NOT NULL,
   `team_id` INT NOT NULL,
+  `enabled` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`user_id`, `team_id`),
   INDEX `fk_user_has_team_team1_idx` (`team_id` ASC),
   INDEX `fk_user_has_team_user1_idx` (`user_id` ASC),
@@ -219,6 +226,7 @@ CREATE TABLE IF NOT EXISTS `game_comment` (
   `user_id` INT NOT NULL,
   `game_id` INT NOT NULL,
   `comment_text` TEXT NULL,
+  `enabled` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_game_comment_user1_idx` (`user_id` ASC),
   INDEX `fk_game_comment_game1_idx` (`game_id` ASC),
@@ -250,7 +258,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `tabletennisprojectdb`;
-INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`) VALUES (1, '123 Apple Street', 'New Orleans', 'LA', '70094');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (1, '123 Apple Street', 'New Orleans', 'LA', '70094', DEFAULT);
 
 COMMIT;
 
@@ -260,7 +268,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `tabletennisprojectdb`;
-INSERT INTO `skill_level` (`id`, `level_name`, `description`) VALUES (1, 'Advanced', 'I am awesome at table tennis ');
+INSERT INTO `skill_level` (`id`, `level_name`, `description`, `enabled`) VALUES (1, 'Advanced', 'I am awesome at table tennis ', DEFAULT);
 
 COMMIT;
 
@@ -281,7 +289,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `tabletennisprojectdb`;
-INSERT INTO `game` (`id`, `date_time`, `venue`, `result`, `player_one_id`, `player_two_id`, `winner_id`, `address_id`) VALUES (1, '2020-10-29 13:14:03', 'Ashley\'s house', 'Ashley won', 1, 2, 1, 1);
+INSERT INTO `game` (`id`, `date_time`, `venue`, `result`, `player_one_id`, `player_two_id`, `winner_id`, `address_id`, `enabled`) VALUES (1, '2020-10-29 13:14:03', 'Ashley\'s house', 'Ashley won', 1, 2, 1, 1, DEFAULT);
 
 COMMIT;
 
@@ -291,7 +299,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `tabletennisprojectdb`;
-INSERT INTO `favorite_users` (`user_id`, `favorite_id`) VALUES (1, 1);
+INSERT INTO `favorite_users` (`user_id`, `favorite_id`, `enabled`) VALUES (1, 1, DEFAULT);
 
 COMMIT;
 
@@ -301,7 +309,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `tabletennisprojectdb`;
-INSERT INTO `player_rating` (`id`, `user_id`, `rated_user_id`, `rating`, `comment`) VALUES (1, 1, 1, 5, NULL);
+INSERT INTO `player_rating` (`id`, `user_id`, `rated_user_id`, `rating`, `comment`, `enabled`) VALUES (1, 1, 1, 5, NULL, DEFAULT);
 
 COMMIT;
 
@@ -311,7 +319,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `tabletennisprojectdb`;
-INSERT INTO `team` (`id`, `name`, `description`, `logo_url`) VALUES (1, 'Sharks', 'a ping pong team', 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.clipartmax.com%2Fpng%2Fmiddle%2F242-2423592_shark-contacts-shark-logo-png.png&imgrefurl=https%3A%2F%2Fwww.clipartmax.com%2Fmiddle%2Fm2H7K9G6Z5d3H7b1_shark-contacts-shark-logo-png%2F&tbnid=dORIiZVU2L9whM&vet=12ahUKEwiT57mHo93sAhVDLc0KHUnzCScQMygWegUIARClAg..i&docid=fYDar4OGuaKcCM&w=840&h=691&q=shark%20logo&ved=2ahUKEwiT57mHo93sAhVDLc0KHUnzCScQMygWegUIARClAg');
+INSERT INTO `team` (`id`, `name`, `description`, `logo_url`, `enabled`) VALUES (1, 'Sharks', 'a ping pong team', 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.clipartmax.com%2Fpng%2Fmiddle%2F242-2423592_shark-contacts-shark-logo-png.png&imgrefurl=https%3A%2F%2Fwww.clipartmax.com%2Fmiddle%2Fm2H7K9G6Z5d3H7b1_shark-contacts-shark-logo-png%2F&tbnid=dORIiZVU2L9whM&vet=12ahUKEwiT57mHo93sAhVDLc0KHUnzCScQMygWegUIARClAg..i&docid=fYDar4OGuaKcCM&w=840&h=691&q=shark%20logo&ved=2ahUKEwiT57mHo93sAhVDLc0KHUnzCScQMygWegUIARClAg', DEFAULT);
 
 COMMIT;
 
@@ -321,7 +329,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `tabletennisprojectdb`;
-INSERT INTO `team_member` (`user_id`, `team_id`) VALUES (1, 1);
+INSERT INTO `team_member` (`user_id`, `team_id`, `enabled`) VALUES (1, 1, DEFAULT);
 
 COMMIT;
 
@@ -331,7 +339,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `tabletennisprojectdb`;
-INSERT INTO `game_comment` (`id`, `comment_date`, `user_id`, `game_id`, `comment_text`) VALUES (1, '2020-10-29', 1, 1, 'Great game!');
+INSERT INTO `game_comment` (`id`, `comment_date`, `user_id`, `game_id`, `comment_text`, `enabled`) VALUES (1, '2020-10-29', 1, 1, 'Great game!', DEFAULT);
 
 COMMIT;
 
