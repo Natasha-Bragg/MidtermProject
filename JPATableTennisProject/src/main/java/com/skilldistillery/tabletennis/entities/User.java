@@ -1,11 +1,15 @@
 package com.skilldistillery.tabletennis.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -40,6 +44,14 @@ public class User {
 	@ManyToOne
 	@JoinColumn(name="skill_level_id")
 	private SkillLevel skillLevel;
+	
+	@ManyToOne
+	@JoinColumn(name = "ratingUser")
+	private List<PlayerRating> ratingsUsers;
+	
+	@ManyToOne
+	@JoinColumn(name = "ratedUser")
+	private List<PlayerRating> ratedUsers;
 	
 	
 	//constructors
@@ -166,6 +178,23 @@ public class User {
 	public void setSkillLevel(SkillLevel skillLevel) {
 		this.skillLevel = skillLevel;
 	}
+	
+
+	public List<PlayerRating> getRatingsUsers() {
+		return ratingsUsers;
+	}
+
+	public void setRatingsUsers(List<PlayerRating> ratingsUsers) {
+		this.ratingsUsers = ratingsUsers;
+	}
+
+	public List<PlayerRating> getRatedUsers() {
+		return ratedUsers;
+	}
+
+	public void setRatedUsers(List<PlayerRating> ratedUsers) {
+		this.ratedUsers = ratedUsers;
+	}
 
 	@Override
 	public int hashCode() {
@@ -193,7 +222,47 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", enabled=" + enabled + ", role="
 				+ role + ", firstName=" + firstName + ", lastName=" + lastName + ", host=" + host + ", travel=" + travel
-				+ ", profileImageUrl=" + profileImageUrl + ", address=" + address + ", skillLevel=" + skillLevel + "]";
+				+ ", profileImageUrl=" + profileImageUrl + ", address=" + address + ", skillLevel=" + skillLevel
+				+ ", ratingsUsers=" + ratingsUsers + ", ratedUsers=" + ratedUsers + "]";
+	}
+
+
+	public void addRatingUser(PlayerRating playerRating) {
+		if (ratingsUsers == null) {
+			ratingsUsers = new ArrayList<>();
+		
+		if (!ratingsUsers.contains(playerRating)) {
+			ratingsUsers.add(playerRating);
+		}	
+		}
+		
+	}
+	
+	public void removeRatingUser(PlayerRating playerRating) {
+		if (ratingsUsers != null && ratingsUsers.contains(playerRating)) {
+			ratingsUsers.remove(playerRating);
+		}
+	}
+	
+
+	public void addRatedUser(PlayerRating playerRating) {
+		if (ratedUsers == null) {
+		
+			ratedUsers = new ArrayList<>();
+		if (!ratedUsers.contains(playerRating)) {
+			ratedUsers.add(playerRating);
+			
+		}	
+		}
+	}
+	
+	
+	public void removeActor(PlayerRating playerRating) {
+		if (ratedUsers != null && ratedUsers.contains(playerRating)) {
+			ratedUsers.remove(playerRating);
+		
 	}
 
 }
+}
+
