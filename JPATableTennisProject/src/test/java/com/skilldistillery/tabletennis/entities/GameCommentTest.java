@@ -2,7 +2,6 @@ package com.skilldistillery.tabletennis.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -43,7 +42,34 @@ class GameCommentTest {
 	}
 
 	@Test
-	void test() {
+	void test1() {
 		assertNotNull(gameComment);
-		assertEquals( 1, gameComment.getId());	}
+		assertEquals( 1, gameComment.getId());	
+		}
+	
+	@Test
+	void test2() {
+		assertNotNull(gameComment);
+		assertEquals(2020, gameComment.getCommentDate().getYear());
+		assertEquals(10, gameComment.getCommentDate().getMonthValue());
+		assertEquals(29, gameComment.getCommentDate().getDayOfMonth());
+	}
+	
+	@Test
+	void test3() {
+		assertNotNull(gameComment);
+		assertEquals(1, gameComment.getUserId());
+	}
+	
+	@Test
+	void test4() {
+		assertNotNull(gameComment);
+		assertEquals(1, gameComment.getGameId());
+	}
+	
+	@Test
+	void test5() {
+		assertNotNull(gameComment);
+		assertEquals("Great game!", gameComment.getCommentText());
+	}
 }

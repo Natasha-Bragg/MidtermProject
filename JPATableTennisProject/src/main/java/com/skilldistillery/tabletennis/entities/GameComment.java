@@ -23,7 +23,13 @@ public class GameComment {
 	
 	@Column (name="comment_text")
 	private String commentText;
+	
+	@Column (name="user_id")
+	private int userId;
 
+	@Column (name="game_id")
+	private int gameId;
+	
 	public int getId() {
 		return id;
 	}
@@ -54,7 +60,9 @@ public class GameComment {
 		int result = 1;
 		result = prime * result + ((commentDate == null) ? 0 : commentDate.hashCode());
 		result = prime * result + ((commentText == null) ? 0 : commentText.hashCode());
+		result = prime * result + gameId;
 		result = prime * result + id;
+		result = prime * result + userId;
 		return result;
 	}
 
@@ -77,7 +85,11 @@ public class GameComment {
 				return false;
 		} else if (!commentText.equals(other.commentText))
 			return false;
+		if (gameId != other.gameId)
+			return false;
 		if (id != other.id)
+			return false;
+		if (userId != other.userId)
 			return false;
 		return true;
 	}
@@ -96,7 +108,33 @@ public class GameComment {
 
 	@Override
 	public String toString() {
-		return "GameComment [id=" + id + ", commentDate=" + commentDate + ", commentText=" + commentText + "]";
+		return "GameComment [id=" + id + ", commentDate=" + commentDate + ", commentText=" + commentText + ", userId="
+				+ userId + ", gameId=" + gameId + "]";
+	}
+
+	public int getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(int gameId) {
+		this.gameId = gameId;
+	}
+
+	public GameComment(int id, LocalDateTime commentDate, String commentText, int userId, int gameId) {
+		super();
+		this.id = id;
+		this.commentDate = commentDate;
+		this.commentText = commentText;
+		this.userId = userId;
+		this.gameId = gameId;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 
