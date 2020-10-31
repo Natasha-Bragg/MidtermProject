@@ -9,6 +9,9 @@
     </provider>
     
     <!-- List Entities Here -->    
+    <class>com.skilldistillery.tabletennis.entities.Address</class>
+    <class>com.skilldistillery.tabletennis.entities.Game</class>
+    <class>com.skilldistillery.tabletennis.entities.SkillLevel</class>
     <class>com.skilldistillery.tabletennis.entities.User</class>
 
     <properties>
