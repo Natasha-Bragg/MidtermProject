@@ -278,7 +278,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `tabletennisprojectdb`;
-INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (1, 'ashley@email.com', 'admin', 1, 'admin', 'Ashley ', 'Davis', 1, 1, 1, 1, 'https://en.wikipedia.org/wiki/File:Gambia_girl.jpg');
+INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (1, 'ashley@email.com', 'admin', 1, 'admin', 'Ashley', 'Davis', 1, 1, 1, 1, 'https://en.wikipedia.org/wiki/File:Gambia_girl.jpg');
 INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (2, 'socrates@email.com', 'admin2', 1, NULL, 'Socrates', 'Epictetus', 1, 1, 1, 1, 'https://en.wikipedia.org/wiki/File:Laughing_boy_at_golden_hour.jpg');
 
 COMMIT;
