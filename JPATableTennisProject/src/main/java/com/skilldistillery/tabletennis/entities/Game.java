@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Game {
@@ -21,6 +23,22 @@ public class Game {
 	private String venue;
 
 	private String result;
+
+	@OneToOne
+	@JoinColumn(name = "player_one_id")
+	private int playerOneId;
+
+	@OneToOne
+	@JoinColumn(name = "player_two_id")
+	private int playerTwoId;
+
+	@OneToOne
+	@JoinColumn(name = "winner_id")
+	private int winnerId;
+
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private int addressId;
 
 	public Game() {
 		super();
@@ -58,9 +76,43 @@ public class Game {
 		this.result = result;
 	}
 
+	public int getPlayerOneId() {
+		return playerOneId;
+	}
+
+	public void setPlayerOneId(int playerOneId) {
+		this.playerOneId = playerOneId;
+	}
+
+	public int getPlayerTwoId() {
+		return playerTwoId;
+	}
+
+	public void setPlayerTwoId(int playerTwoId) {
+		this.playerTwoId = playerTwoId;
+	}
+
+	public int getWinnerId() {
+		return winnerId;
+	}
+
+	public void setWinnerId(int winnerId) {
+		this.winnerId = winnerId;
+	}
+
+	public int getAddressId() {
+		return addressId;
+	}
+
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
+	}
+
 	@Override
 	public String toString() {
-		return "Game [id=" + id + ", dateTime=" + dateTime + ", venue=" + venue + ", result=" + result + "]";
+		return "Game [id=" + id + ", dateTime=" + dateTime + ", venue=" + venue + ", result=" + result
+				+ ", playerOneId=" + playerOneId + ", playerTwoId=" + playerTwoId + ", winnerId=" + winnerId
+				+ ", addressId=" + addressId + "]";
 	}
 
 	@Override
