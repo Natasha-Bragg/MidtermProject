@@ -26,19 +26,19 @@ public class Game {
 
 	@OneToOne
 	@JoinColumn(name = "player_one_id")
-	private int playerOneId;
+	private User playerOne;
 
 	@OneToOne
 	@JoinColumn(name = "player_two_id")
-	private int playerTwoId;
+	private User playerTwo;
 
 	@OneToOne
 	@JoinColumn(name = "winner_id")
-	private int winnerId;
+	private User winner;
 
 	@OneToOne
 	@JoinColumn(name = "address_id")
-	private int addressId;
+	private Address address;
 
 	public Game() {
 		super();
@@ -72,47 +72,47 @@ public class Game {
 		return result;
 	}
 
+	public User getPlayerOne() {
+		return playerOne;
+	}
+
+	public void setPlayerOne(User playerOne) {
+		this.playerOne = playerOne;
+	}
+
+	public User getPlayerTwo() {
+		return playerTwo;
+	}
+
+	public void setPlayerTwo(User playerTwo) {
+		this.playerTwo = playerTwo;
+	}
+
+	public User getWinner() {
+		return winner;
+	}
+
+	public void setWinner(User winner) {
+		this.winner = winner;
+	}
+
 	public void setResult(String result) {
 		this.result = result;
 	}
 
-	public int getPlayerOneId() {
-		return playerOneId;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setPlayerOneId(int playerOneId) {
-		this.playerOneId = playerOneId;
-	}
-
-	public int getPlayerTwoId() {
-		return playerTwoId;
-	}
-
-	public void setPlayerTwoId(int playerTwoId) {
-		this.playerTwoId = playerTwoId;
-	}
-
-	public int getWinnerId() {
-		return winnerId;
-	}
-
-	public void setWinnerId(int winnerId) {
-		this.winnerId = winnerId;
-	}
-
-	public int getAddressId() {
-		return addressId;
-	}
-
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
+	public void setAddress(Address addressId) {
+		this.address = addressId;
 	}
 
 	@Override
 	public String toString() {
 		return "Game [id=" + id + ", dateTime=" + dateTime + ", venue=" + venue + ", result=" + result
-				+ ", playerOneId=" + playerOneId + ", playerTwoId=" + playerTwoId + ", winnerId=" + winnerId
-				+ ", addressId=" + addressId + "]";
+				+ ", playerOneId=" + playerOne + ", playerTwoId=" + playerTwo + ", winnerId=" + winner
+				+ ", addressId=" + address + "]";
 	}
 
 	@Override
