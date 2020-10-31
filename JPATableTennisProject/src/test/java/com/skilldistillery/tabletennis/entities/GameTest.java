@@ -68,28 +68,25 @@ class GameTest {
 		assertNotNull(game);
 		assertEquals("Ashley won", game.getResult());
 	}
-	
-//	+----+------------------+----------+---------+-------+------------+-----------+------+--------+------------+----------------+----------------------------------------------------+
-//	| id | email            | password | enabled | role  | first_name | last_name | host | travel | address_id | skill_level_id | profile_image_url                                  |
-//	+----+------------------+----------+---------+-------+------------+-----------+------+--------+------------+----------------+----------------------------------------------------+
-//	|  1 | ashley@email.com | admin    |       1 | admin | Ashley     | Davis     |    1 |      1 |          1 |              1 | https://en.wikipedia.org/wiki/File:Gambia_girl.jpg |
-//	+----+------------------+----------+---------+-------+------------+-----------+------+--------+------------+----------------+----------------------------------------------------+
-	
+
 	@Test
 	void test5() {
 		assertNotNull(game);
-		assertEquals("Ashley",game.getPlayerOne().getFirstName());
+		assertEquals("Ashley", game.getPlayerOne().getFirstName());
 	}
+
 	@Test
 	void test6() {
 		assertNotNull(game);
 		assertEquals("Socrates", game.getPlayerTwo().getFirstName());
 	}
+
 	@Test
 	void test7() {
 		assertNotNull(game);
 		assertEquals("Ashley", game.getWinner().getFirstName());
 	}
+
 	@Test
 	void test8() {
 		assertNotNull(game);
