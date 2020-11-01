@@ -1,16 +1,11 @@
 package com.skilldistillery.tabletennis.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,11 +16,19 @@ public class PlayerRating {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToMany(mappedBy = "user_id")
-	private List<User> ratingUser;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User userMakingRating;
 	
-	@OneToMany(mappedBy = "rated_user_id")
-	private List<User> ratedUser;
+	@ManyToOne
+	@JoinColumn(name="rated_user_id")
+	private User userBeingRated;
+	
+//	@OneToMany(mappedBy = "user_id")
+//	private List<User> ratingUser;
+//	
+//	@OneToMany(mappedBy = "rated_user_id")
+//	private List<User> ratedUser;
 	
 	
 	private int rating;
@@ -49,20 +52,28 @@ public class PlayerRating {
 
 
 
-	public List<User> getRatingUser() {
-		return ratingUser;
+//	public List<User> getRatingUser() {
+//		return ratingUser;
+//	}
+//
+//	public void setRatingUser(List<User> ratingUser) {
+//		this.ratingUser = ratingUser;
+//	}
+//
+//	public List<User> getRatedUser() {
+//		return ratedUser;
+//	}
+//
+//	public void setRatedUser(List<User> ratedUser) {
+//		this.ratedUser = ratedUser;
+//	}
+
+	public User getUserRating() {
+		return userMakingRating;
 	}
 
-	public void setRatingUser(List<User> ratingUser) {
-		this.ratingUser = ratingUser;
-	}
-
-	public List<User> getRatedUser() {
-		return ratedUser;
-	}
-
-	public void setRatedUser(List<User> ratedUser) {
-		this.ratedUser = ratedUser;
+	public void setUserRating(User userRating) {
+		this.userMakingRating = userRating;
 	}
 
 	public int getRating() {
@@ -79,6 +90,14 @@ public class PlayerRating {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+	
+	public User getRatedUser() {
+		return userBeingRated;
+	}
+
+	public void setRatedUser(User ratedUser) {
+		this.userBeingRated = ratedUser;
 	}
 
 	@Override
@@ -105,9 +124,15 @@ public class PlayerRating {
 
 	@Override
 	public String toString() {
-		return "PlayerRating [id=" + id + ", ratingUser=" + ratingUser + ", ratedUser=" + ratedUser + ", rating="
+		return "PlayerRating [id=" + id + ", userRating=" + userMakingRating + ", ratedUser=" + userBeingRated + ", rating="
 				+ rating + ", comment=" + comment + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		return "PlayerRating [id=" + id + ", ratingUser=" + ratingUser + ", ratedUser=" + ratedUser + ", rating="
+//				+ rating + ", comment=" + comment + "]";
+//	}
 
 	
 

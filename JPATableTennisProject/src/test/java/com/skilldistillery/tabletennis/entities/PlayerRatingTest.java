@@ -14,7 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class PlayerRatingTest {
-	
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 	private PlayerRating playerRating;
@@ -40,16 +40,21 @@ class PlayerRatingTest {
 		em.close();
 		playerRating = null;
 	}
-	
+
 	@Test
-	@DisplayName("test PlayerRating entity mappings")
+	@DisplayName("test PlayerRating ManyToOne userRated to User")
 	void test1() {
 		assertNotNull(playerRating);
-		assertEquals("Ashley", playerRating.getRatingUser().get(0).getFirstName());
+		assertEquals("Ashley", playerRating.getUserRating().getFirstName());
 //		assertEquals(1, playerRating.getRatedUser());
 //		assertEquals(5, playerRating.getRating());
 //		assertEquals(null, playerRating.getComment());
 	}
+
+	@Test
+	@DisplayName("testing PlayerRating ManyToOne userRated to User")
+	void test2() {
+		assertNotNull(playerRating);
+		assertEquals("Davis", playerRating.getRatedUser().getLastName());
 	}
-
-
+}

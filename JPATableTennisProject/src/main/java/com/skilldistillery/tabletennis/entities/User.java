@@ -9,13 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
 public class User {
-	//fields
+	// fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -24,41 +24,46 @@ public class User {
 	private String password;
 	private int enabled;
 	private String role;
-	
-	@Column(name="first_name")
+
+	@Column(name = "first_name")
 	private String firstName;
 
-	@Column(name="last_name")
+	@Column(name = "last_name")
 	private String lastName;
-	
+
 	private int host;
 	private int travel;
-	
-	@Column(name="profile_image_url")
+
+	@Column(name = "profile_image_url")
 	private String profileImageUrl;
-	
+
 	@OneToOne
-	@JoinColumn(name="address_id")
+	@JoinColumn(name = "address_id")
 	private Address address;
-	
+
 	@ManyToOne
-	@JoinColumn(name="skill_level_id")
+	@JoinColumn(name = "skill_level_id")
 	private SkillLevel skillLevel;
-	
-	@ManyToOne
-	@JoinColumn(name = "ratingUser")
-	private List<PlayerRating> ratingsUsers;
-	
-	@ManyToOne
-	@JoinColumn(name = "ratedUser")
+
+	@OneToMany(mappedBy = "userMakingRating")
+	private List<PlayerRating> usersMakingRatings;
+
+	@OneToMany(mappedBy = "userBeingRated")
 	private List<PlayerRating> ratedUsers;
-	
-	
-	//constructors
+
+//	@ManyToOne
+//	@JoinColumn(name = "ratingUser")
+//	private List<PlayerRating> ratingsUsers;
+//	
+//	@ManyToOne
+//	@JoinColumn(name = "rated_user_id")
+//	private List<PlayerRating> ratedUsers;
+
+	// constructors
 	public User() {
 		super();
 	}
-	
+
 	public User(int id, String email, String password, int enabled, String role, String firstName, String lastName,
 			int host, int travel, String profileImageUrl) {
 		super();
@@ -74,7 +79,7 @@ public class User {
 		this.profileImageUrl = profileImageUrl;
 	}
 
-	//getters/setters
+	// getters/setters
 	public String getUsername() {
 		return email;
 	}
@@ -90,7 +95,7 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -178,14 +183,13 @@ public class User {
 	public void setSkillLevel(SkillLevel skillLevel) {
 		this.skillLevel = skillLevel;
 	}
-	
 
-	public List<PlayerRating> getRatingsUsers() {
-		return ratingsUsers;
+	public List<PlayerRating> getUsersMakingRatings() {
+		return usersMakingRatings;
 	}
 
-	public void setRatingsUsers(List<PlayerRating> ratingsUsers) {
-		this.ratingsUsers = ratingsUsers;
+	public void setUsersMakingRatings(List<PlayerRating> usersMakingRatings) {
+		this.usersMakingRatings = usersMakingRatings;
 	}
 
 	public List<PlayerRating> getRatedUsers() {
@@ -196,6 +200,41 @@ public class User {
 		this.ratedUsers = ratedUsers;
 	}
 
+	// add/remove list methods
+	public void addUserRating(PlayerRating userRating) {
+		if (usersMakingRatings == null) {
+			usersMakingRatings = new ArrayList<>();
+
+			if (!usersMakingRatings.contains(userRating)) {
+				usersMakingRatings.add(userRating);
+			}
+		}
+	}
+
+	public void removeUserRating(PlayerRating userRating) {
+		if (usersMakingRatings != null && usersMakingRatings.contains(userRating)) {
+			usersMakingRatings.remove(userRating);
+		}
+	}
+
+	public void addRatedUser(PlayerRating ratedUser) {
+		if (ratedUsers == null) {
+
+			ratedUsers = new ArrayList<>();
+			if (!ratedUsers.contains(ratedUser)) {
+				ratedUsers.add(ratedUser);
+
+			}
+		}
+	}
+
+	public void removeRatedUser(PlayerRating ratedUser) {
+		if (ratedUsers != null && ratedUsers.contains(ratedUser)) {
+			ratedUsers.remove(ratedUser);
+		}
+	}
+
+	// other methods
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -222,47 +261,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", enabled=" + enabled + ", role="
 				+ role + ", firstName=" + firstName + ", lastName=" + lastName + ", host=" + host + ", travel=" + travel
-				+ ", profileImageUrl=" + profileImageUrl + ", address=" + address + ", skillLevel=" + skillLevel
-				+ ", ratingsUsers=" + ratingsUsers + ", ratedUsers=" + ratedUsers + "]";
-	}
-
-
-	public void addRatingUser(PlayerRating playerRating) {
-		if (ratingsUsers == null) {
-			ratingsUsers = new ArrayList<>();
-		
-		if (!ratingsUsers.contains(playerRating)) {
-			ratingsUsers.add(playerRating);
-		}	
-		}
-		
-	}
-	
-	public void removeRatingUser(PlayerRating playerRating) {
-		if (ratingsUsers != null && ratingsUsers.contains(playerRating)) {
-			ratingsUsers.remove(playerRating);
-		}
-	}
-	
-
-	public void addRatedUser(PlayerRating playerRating) {
-		if (ratedUsers == null) {
-		
-			ratedUsers = new ArrayList<>();
-		if (!ratedUsers.contains(playerRating)) {
-			ratedUsers.add(playerRating);
-			
-		}	
-		}
-	}
-	
-	
-	public void removeActor(PlayerRating playerRating) {
-		if (ratedUsers != null && ratedUsers.contains(playerRating)) {
-			ratedUsers.remove(playerRating);
-		
+				+ ", profileImageUrl=" + profileImageUrl + ", address=" + address + ", skillLevel=" + skillLevel + "]";
 	}
 
 }
-}
-

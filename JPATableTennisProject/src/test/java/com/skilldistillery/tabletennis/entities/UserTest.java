@@ -82,5 +82,39 @@ class UserTest {
 		assertEquals("LA", address.getState());
 		assertEquals("70094", address.getZip());
 	}
-
+	
+	@Test
+	@DisplayName("testing user OneToMany usersMakingRatings to PlayerRating")
+	void test2()
+	{
+		/*
+		 select * from player_rating;
++----+---------+---------------+--------+---------+---------+
+| id | user_id | rated_user_id | rating | comment | enabled |
++----+---------+---------------+--------+---------+---------+
+|  1 |       1 |             1 |      5 | NULL    |       1 |
++----+---------+---------------+--------+---------+---------+
+		 */
+		assertNotNull(user);
+		assertNotNull(user.getUsersMakingRatings());
+		assertEquals(5, user.getUsersMakingRatings().get(0).getRating());
+	}
+	@Test
+	@DisplayName("testing user OneToMany RatedUsers to PlayerRating")
+	void test3()
+	{
+		/*
+		 select * from player_rating;
++----+---------+---------------+--------+---------+---------+
+| id | user_id | rated_user_id | rating | comment | enabled |
++----+---------+---------------+--------+---------+---------+
+|  1 |       1 |             1 |      5 | NULL    |       1 |
++----+---------+---------------+--------+---------+---------+
+		 */
+		assertNotNull(user);
+		assertNotNull(user.getRatedUsers().get(0).getId());
+		assertEquals(5, user.getUsersMakingRatings().get(0).getRating());
+	}
+	
+	
 }
