@@ -39,7 +39,7 @@
                 <a class="navbar-brand mx-auto" href="#"><img src="logo.png" width="30" height="30" alt="logo" loading="lazy"></a>
             </li>
             <li class="nav-item">
-                <img src="logo2.png" width="30" height="30" alt="logo" loading="lazy">
+               <a class="nav-link" href="#"><img src="logo2.png" width="30" height="30" alt="logo" loading="lazy"></a>
             </li>
         </ul>
     </div>
@@ -52,10 +52,10 @@
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <button class="btn btn-light my-2 my-sm-0" type="button" value="showCreateProfile.do">Create Profile</button>
+                <a class="btn btn-light my-2 my-sm-0" role="button" href="showCreateProfile.do">Create Profile</a>
             </li>
             <li class="nav-item">
-                <button class="btn btn-light my-2 my-sm-0" type="button" value="login.do">Login</button>
+                <a class="btn btn-light my-2 my-sm-0" role="button" href="login.do">Login</a>
             </li>
         </ul>
     </div>
