@@ -79,12 +79,12 @@
     Password:
     <input type="text" name="password"/> <br>
     Host?:
-    <input type="checkbox" name="host"/><br> 
+    <input type="checkbox" name="host" value="${user.Id}"/><br> 
     Travel?:
 	<input type="checkbox" name="travel"/><br>
     
     
-    <input type="submit" value="Create Profile" />
+    <input type="submit" value="Create Profile" style="float: right;" />
   </form>
 </div>
 </body>
