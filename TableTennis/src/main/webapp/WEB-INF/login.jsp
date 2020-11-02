@@ -38,10 +38,8 @@
 			class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="navbar-brand mx-auto"
-					href="#"><img src="logo.png" width="30" height="30" alt="logo"
+					href="landing.do"><img src="logo.png" width="30" height="30" alt="logo"
 						loading="lazy"></a></li>
-				<li class="nav-item"><img src="logo2.png" width="30"
-					height="30" alt="logo" loading="lazy"></li>
 			</ul>
 		</div>
 		<div class="mx-auto order-0">
