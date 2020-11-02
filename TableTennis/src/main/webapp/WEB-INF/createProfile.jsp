@@ -73,8 +73,9 @@
     <input type="text" name="state"/> <br>
     Zip Code:
     <input type="text" name="zip"/> <br>
+    
     Email:
-    <input type="text" name="email"/> <br> This will be your username
+    <input type="text" name="email"/> This will be your username <br>
     Password:
     <input type="text" name="password"/> <br>
     Host?:

@@ -49,7 +49,7 @@
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="btn btn-light my-2 my-sm-0" role="button" href="showCreateProfile.do">Create Profile</a>
+                <a class="btn btn-light my-2 my-sm-0" role="button" href="showCreateProfileForm.do">Create Profile</a>
             </li>
             <li class="nav-item">
                 <a class="btn btn-light my-2 my-sm-0" role="button" href="login.do">Login</a>
