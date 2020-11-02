@@ -50,13 +50,10 @@
 
 	<h1>Your Profile Has Been Deleted</h1>
 
-	<div></div>
-	<div></div>
-	<div>
-		<button class="btn btn-light my-2 my-sm-0" type="button"
-			value="landing.do">OK</button>
+	<br>
 
-	</div>
+	<button class="btn btn-light my-2 my-sm-0" type="button" value="landing.do">OK</button>
+
 
 </body>
 </html>
