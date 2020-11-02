@@ -8,9 +8,11 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Table Tennis Player Connection</title>
+<title>Account Home</title>
 <link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css"
+	>
+	
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
@@ -37,7 +39,7 @@
 			class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="navbar-brand mx-auto"
-					href="#"><img src="logo.png" width="30" height="30" alt="logo"
+					href="landing.do"><img src="logo.png" width="30" height="30" alt="logo"
 						loading="lazy"></a></li>
 				<li class="nav-item"><a class="nav-link" href="#"><img
 						src="logo2.png" width="30" height="30" alt="logo" loading="lazy"></a>
@@ -51,8 +53,14 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 		</div>
+		<li class="nav-item">
+                <a class="btn btn-light my-2 my-sm-0" role="button" href="#">View Your Profile</a>
+            </li>
 		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
 			<ul class="navbar-nav ml-auto"></ul>
+				<li class="nav-item">
+                <a class="btn btn-light my-2 my-lg-0" role="button" href="landing.do">Log Out</a>
+            </li>
 		</div>
 	</nav>
 	<br>
@@ -76,7 +84,7 @@
 					<c:when test="${! empty users}">
 						<c:forEach var="user" items="${users}">
 							<tr class="text-center">
-								<td>${user.firstName}${user.lastName}</td>
+								<td>${user.firstName} ${user.lastName}</td>
 								<td>${user.address.city}(${user.address.state})</td>
 								<td>${user.skillLevel.levelName}</td>
 								<td><button type="button">Organize a Game</button></td>
