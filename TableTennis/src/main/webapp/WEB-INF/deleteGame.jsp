@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Profile Deleted</title>
+<title>Game Deleted</title>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 <link rel="stylesheet"
@@ -30,29 +30,37 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-md navbar-light bg-light">
-		<div
-			class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="navbar-brand mx-auto"
-					href="landing.do"><img src="logo.png" width="30" height="30"
-						alt="logo" loading="lazy"></a></li>
-			</ul>
-		</div>
-		<div class="mx-auto order-0">
-			<a class="navbar-brand mx-auto" href="#"></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target=".dual-collapse2">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-		</div>
-	</nav>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="navbar-brand mx-auto" href="home.do"><img src="logo.png" width="30" height="30" alt="logo" loading="lazy"></a>
+            </li>
+        </ul>
+    </div>
+    <div class="mx-auto order-0">
+        <a class="navbar-brand mx-auto" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="btn btn-light my-2 my-sm-0" role="button" href="viewYourProfile.do">View Your Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-light my-2 my-sm-0" role="button" href="logout.do">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-	<h1>Your Profile Has Been Deleted</h1>
+	<h1>This Game Has Been Deleted</h1>
 
 	<br>
 
-	<a class="btn btn-light my-2 my-sm-0" role="button" href="landing.do">OK</a>
+	<a class="btn btn-light my-2 my-sm-0" role="button" href="home.do">OK</a>
 
 </body>
 </html>
