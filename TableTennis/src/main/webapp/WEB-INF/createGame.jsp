@@ -58,72 +58,21 @@
 	</nav>
 	<br>
 	<div class="container-fluid">
-		<form>
-			<div class="form-group row">
-				<label for="staticPlayerOne" class="col-sm-2 col-form-label">Player
-					One</label>
-			</div>
-			<div class="col-sm-10">
-				<input type="text" readonly class="form-control-plaintext"
-					id="playerOne" value="${game.playerOne}">
-			</div>
-			<div class="form-group row">
-				<label for="staticPlayerTwo" class="col-sm-2 col-form-label">Player
-					Two</label>
-			</div>
-			<div class="col-sm-10">
-				<input type="text" readonly class="form-control-plaintext"
-					id="playerTwo" value="${game.playerTwo}">
-			</div>
-			<div class="form-group row">
-				<label for="staticStreet" class="col-sm-2 col-form-label">Street</label>
-			</div>
-			<div class="col-sm-10">
-				<input type="text" readonly class="form-control-plaintext"
-					id="street" value="${user.address.street}">
-			</div>
-			<div class="form-group row">
-				<label for="staticStreet" class="col-sm-2 col-form-label">Venue</label>
-			</div>
-			<div class="col-sm-10">
-				<input type="text" readonly class="form-control-plaintext"
-					id="street" value="${game.venue}">
-			</div>
-			<div class="form-group row">
-				<div class="col">
-					<label for="staticCity" class="col-sm-2 col-form-label">City</label>
-				</div>
-				<div class="col-sm-10">
-					<input type="text" readonly class="form-control-plaintext"
-						id="city" value="${user.address.city}">
-				</div>
-				<div class="col">
-					<label for="staticState" class="col-sm-2 col-form-label">State</label>
-				</div>
-				<div class="col-sm-10">
-					<input type="text" readonly class="form-control-plaintext"
-						id="city" value="${user.address.state}">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="staticDate" class="col-sm-2 col-form-label">Date</label>
-			</div>
-			<div class="col-sm-10">
-				<input type="text" readonly class="form-control-plaintext"
-					id="staticEmail" value="${game.date}">
-			</div>
-			<div class="row">
-				<div class="col"></div>
-				<div class="col">
-					<a class="btn btn-light my-2 my-sm-0" role="button" href="home.do">Cancel</a>
-				</div>
-				<div class="col">
-					<a class="btn btn-light my-2 my-sm-0" role="button"
-						href="createGame.do">Submit</a>
-				</div>
-			</div>
-		</form>
+		<h1 class="text-center">Organize Your Game</h1>
 		<br>
+		<form action="createGame.do" method="GET">
+			Player One: <br> <input type="text" name="playerOne" /> <br>
+			Player Two: <br> <input type="text" name="playerTwo" /> <br>
+			Venue: <input type="text" name="venue" /> <br> 
+			Street: <input type="text" name="street" /> <br> 
+			City: <input type="text" name="city" /> <br> 
+			State: <input type="text" name="state" /> <br> 
+			Date: <input type="text" name="date" /> <br> 
+			Time: <input type="text" name="time" /> <br> 
+			
+			<a class="btn btn-light my-2 my-sm-0" role="button" href="createGame.do">Submit</a>
+		</form>
 	</div>
+	<br>
 </body>
 </html>
