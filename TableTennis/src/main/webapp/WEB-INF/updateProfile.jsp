@@ -53,58 +53,58 @@
 <div class="container-fluid">
 <h1>Profile</h1>
 <c:if test="${! empty user}">
-<form action="updateProfile.do" method="POST">
+<form>
 <div class="form-group row">
 <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
 </div>
 <div class="col-sm-10">
-<input type="text" class="form-control" id="firstName" value="${user.firstName}" readonly>
+<input type="text"   class="form-control" id="firstName" value="${user.firstName}">
 </div>
 <div class="form-group row">
 <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
 </div>
 <div class="col-sm-10">
-<input type="text"   class="form-control" id="lastName" value="${user.lastName}" readonly>
+<input type="text"   class="form-control" id="firstName" value="${user.lastName}">
 </div>
 <div class="form-group row">
 <label for="street" class="col-sm-2 col-form-label">Street</label>
 </div>
 <div class="col-sm-10">
-<input type="text"   class="form-control" id="street" value="${user.address.street}" readonly>
+<input type="text"   class="form-control" id="street" value="${user.address.street}">
 </div>
 <div class="form-group row">
 <div class="col">
 <label for="city" class="col-sm-2 col-form-label">City</label>
 </div>
 <div class="col-sm-10">
-<input type="text"   class="form-control" id="city" value="${user.address.city}" readonly>
+<input type="text"   class="form-control" id="city" value="${user.address.city}">
 </div>
 <div class="col">
 <label for="state" class="col-sm-2 col-form-label">State</label>
 </div>
 <div class="col-sm-10">
-<input type="text"   class="form-control" id="state" value="${user.address.state}" readonly>
+<input type="text"   class="form-control" id="city" value="${user.address.state}">
 </div>
 </div>
 <div class="form-group row">
 <label for="email" class="col-sm-2 col-form-label">Email</label>
 </div>
 <div class="col-sm-10">
-<input type="text"   class="form-control" id="email" value="${user.email}" readonly>
+<input type="text"   class="form-control" id="email" value="${user.email}">
 </div>
 <div class="form-group row">
 <label for="password" class="col-sm-2 col-form-label">Password</label>
 </div>
 <div class="col-sm-10">
-<input type="text"   class="form-control" id="password" value="${user.password}" readonly>
+<input type="text"   class="form-control" id="password" value="${user.password}">
 </div>
 <div class="form-group row" class="col-sm-10" class="form-check">
 <c:choose>
 <c:when test="${user.host} = 1">
-<input type="checkbox" id="host" value="" checked readonly>
+<input type="checkbox" id="host" value="" checked>
 </c:when>
 <c:otherwise test="${user.host} = 0">
-<input type="checkbox" id="host" value="" readonly>
+<input type="checkbox" id="host" value="">
 </c:otherwise>
 </c:choose>
 </div>
@@ -114,10 +114,10 @@
 <div class="form-group row" class="col-sm-10" class="form-check">
 <c:choose>
 <c:when test="${user.travel} = 1">
-<input type="checkbox" id="travel" value="" checked readonly>
+<input type="checkbox" id="travel" value="" checked>
 </c:when>
 <c:otherwise test="${user.travel} = 0">
-<input type="checkbox" id="travel" value="" readonly>
+<input type="checkbox" id="travel" value="">
 </c:otherwise>
 </c:choose>
 </div>
@@ -128,16 +128,24 @@
 <label for="skillLevel" class="col-sm-2 col-form-label">SkillLevel</label>
 </div>
 <div class="col-sm-10">
-<input type="text"   class="form-control" id="skillLevel" value="${user.skillLevel.level_name}" readonly>
+<select class="form-control" id="skillLevel">
+<c:if test="${! empty skillLevel }">
+<c:forEach var="skill" items="${skillLevels}">
+<c:if test="${skill.level_name} == ${user.skillLevel.level.name}" selected="true">
+<option value="${skill.id}">${skill.level_name}</option>
+</c:if>
+</c:forEach>
+</c:if>
+</select>
 </div>
 <div class="row">
 <div class="col">
 </div>
 <div class="col">
-<a class="btn btn-light my-2 my-sm-0" role="button" href="deleteProfile.do">Delete Profile</a>
+
 </div>
 <div class="col">
-<a class="btn btn-light my-2 my-sm-0" role="button" href="updateProfile.do">Update Profile</a>
+<button class="btn btn-light my-2 my-sm-0" type="submit" name="id" value="{$user.id}">Submit</button>
 </div>
 </div>
 </form>
