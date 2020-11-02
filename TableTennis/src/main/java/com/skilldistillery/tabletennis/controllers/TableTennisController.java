@@ -16,16 +16,22 @@ public class TableTennisController {
 	@Autowired
 	private TableTennisDAO dao;
 
-	@RequestMapping(path = {"/","landing.do"})
+	@RequestMapping(path = { "/", "landing.do" })
 	public String landing(Model model) {
 		List<User> userList = dao.findAll();
 		model.addAttribute("users", userList);
-
 		return "landing";
 	}
-	
-	@RequestMapping(path="login.do")
+
+	@RequestMapping(path = "login.do")
 	public String login() {
 		return "login";
+	}
+
+	@RequestMapping(path = "home.do")
+	public String home(Model model) {
+		List<User> userList = dao.findAll();
+		model.addAttribute("users", userList);
+		return "home";
 	}
 }
