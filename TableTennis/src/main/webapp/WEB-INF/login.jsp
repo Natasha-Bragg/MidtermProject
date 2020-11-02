@@ -38,8 +38,8 @@
 			class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="navbar-brand mx-auto"
-					href="landing.do"><img src="logo.png" width="30" height="30" alt="logo"
-						loading="lazy"></a></li>
+					href="landing.do"><img src="logo.png" width="30" height="30"
+						alt="logo" loading="lazy"></a></li>
 			</ul>
 		</div>
 		<div class="mx-auto order-0">
@@ -49,22 +49,21 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 		</div>
-		</nav>
+	</nav>
 
-<h2>Login</h2>
+	<h2>Login</h2>
 
-		<form>
-			<div class="container">
-				<label>E-mail : </label> <input type="text" placeholder="Enter E-mail" name="username" required> 
-					<br>
-				<label>Password : </label> <input type="password" placeholder="Enter Password" name="password" required>
-					<br>
-				<button class="btn btn-light my-2 my-sm-0" type="button" value="login.do">Login</button>
-					<br>
-				<input type="checkbox" checked="checked"> Remember me
-				<button type="button" class="cancelbtn">Cancel</button>
-				Forgot <a href="#"> password? </a>
-			</div>
-		</form>
+	<form>
+		<div class="container">
+			<label>E-mail : </label> <input type="text"
+				placeholder="Enter E-mail" name="username" required> <br>
+			<label>Password : </label> <input type="password"
+				placeholder="Enter Password" name="password" required> <br>
+			<a class="btn btn-light my-2 my-sm-0" role="button" href="login.do">Login</a>
+			<br> <input type="checkbox" checked="checked"> Remember
+			me <a class="btn btn-light my-2 my-sm-0" role="button"
+				href="landing.do">Cancel</a> Forgot <a href="#"> password? </a>
+		</div>
+	</form>
 </body>
 </html>
