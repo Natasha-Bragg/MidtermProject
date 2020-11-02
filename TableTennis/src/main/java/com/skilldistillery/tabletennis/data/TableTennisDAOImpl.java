@@ -3,6 +3,8 @@ package com.skilldistillery.tabletennis.data;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -13,6 +15,8 @@ import com.skilldistillery.tabletennis.entities.User;
 @Transactional
 @Service
 public class TableTennisDAOImpl implements TableTennisDAO {
+	
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("TableTennisProject");
 
 	@PersistenceContext
 	private EntityManager em;
@@ -28,6 +32,18 @@ String q = "SELECT u FROM User u";
 List<User> userList = em.createQuery(q, User.class)
 						.getResultList();
 		return userList;
+	}
+	
+	@Override
+	public User createUser(User user) {
+		em = emf.createEntityManager();
+
+	    em.getTransaction().begin();
+	    em.persist(user);
+	    em.flush();
+	    em.getTransaction().commit();
+		em.close();
+		return user;
 	}
 
 }

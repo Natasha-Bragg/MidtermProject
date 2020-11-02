@@ -8,5 +8,6 @@ public interface TableTennisDAO {
 
 	User findById(int id);
 	List<User> findAll();
+	User createUser(User user);
 
 }
