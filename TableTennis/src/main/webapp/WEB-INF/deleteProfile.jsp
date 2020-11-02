@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Login</title>
+<title>Profile Deleted</title>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 <link rel="stylesheet"
@@ -27,9 +27,6 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
 	integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
 	crossorigin="anonymous"></script>
-<script type="text/javascript" charset="utf8"
-	src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-
 </head>
 <body>
 
@@ -38,8 +35,8 @@
 			class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="navbar-brand mx-auto"
-					href="landing.do"><img src="logo.png" width="30" height="30" alt="logo"
-						loading="lazy"></a></li>
+					href="landing.do"><img src="logo.png" width="30" height="30"
+						alt="logo" loading="lazy"></a></li>
 			</ul>
 		</div>
 		<div class="mx-auto order-0">
@@ -49,22 +46,17 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 		</div>
-		</nav>
+	</nav>
 
-<h2>Login</h2>
+	<h1>Your Profile Has Been Deleted</h1>
 
-		<form>
-			<div class="container">
-				<label>E-mail : </label> <input type="text" placeholder="Enter E-mail" name="username" required> 
-					<br>
-				<label>Password : </label> <input type="password" placeholder="Enter Password" name="password" required>
-					<br>
-				<button class="btn btn-light my-2 my-sm-0" type="button" value="login.do">Login</button>
-					<br>
-				<input type="checkbox" checked="checked"> Remember me
-				<button type="button" class="cancelbtn">Cancel</button>
-				Forgot <a href="#"> password? </a>
-			</div>
-		</form>
+	<div></div>
+	<div></div>
+	<div>
+		<button class="btn btn-light my-2 my-sm-0" type="button"
+			value="landing.do">OK</button>
+
+	</div>
+
 </body>
 </html>

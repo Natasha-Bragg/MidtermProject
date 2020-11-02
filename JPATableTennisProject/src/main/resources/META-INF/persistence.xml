@@ -11,6 +11,7 @@
     <!-- List Entities Here -->    
     <class>com.skilldistillery.tabletennis.entities.Address</class>
     <class>com.skilldistillery.tabletennis.entities.Game</class>
+    <class>com.skilldistillery.tabletennis.entities.GameComment</class>
     <class>com.skilldistillery.tabletennis.entities.PlayerRating</class>
     <class>com.skilldistillery.tabletennis.entities.SkillLevel</class>
     <class>com.skilldistillery.tabletennis.entities.Team</class>

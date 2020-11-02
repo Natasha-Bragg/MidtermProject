@@ -38,9 +38,6 @@
             <li class="nav-item active">
                 <a class="navbar-brand mx-auto" href="#"><img src="logo.png" width="30" height="30" alt="logo" loading="lazy"></a>
             </li>
-            <li class="nav-item">
-               <a class="nav-link" href="#"><img src="logo2.png" width="30" height="30" alt="logo" loading="lazy"></a>
-            </li>
         </ul>
     </div>
     <div class="mx-auto order-0">
