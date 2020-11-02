@@ -63,12 +63,12 @@
 		<form action="createGame.do" method="GET">
 			Player One: <br> <input type="text" name="playerOne" /> <br>
 			Player Two: <br> <input type="text" name="playerTwo" /> <br>
-			Venue: <input type="text" name="venue" /> <br> 
-			Street: <input type="text" name="street" /> <br> 
-			City: <input type="text" name="city" /> <br> 
-			State: <input type="text" name="state" /> <br> 
-			Date: <input type="text" name="date" /> <br> 
-			Time: <input type="text" name="time" /> <br> 
+			Venue: <br> <input type="text" name="venue" /> <br> 
+			Street: <br> <input type="text" name="street" /> <br> 
+			City: <br> <input type="text" name="city" /> <br> 
+			State: <br> <input type="text" name="state" /> <br> 
+			Date: <br> <input type="text" name="date" /> <br> 
+			Time: <br> <input type="text" name="time" /> <br> 
 			
 			<a class="btn btn-light my-2 my-sm-0" role="button" href="createGame.do">Submit</a>
 		</form>
