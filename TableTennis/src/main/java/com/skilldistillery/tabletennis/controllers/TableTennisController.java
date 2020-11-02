@@ -34,4 +34,9 @@ public class TableTennisController {
 		model.addAttribute("users", userList);
 		return "home";
 	}
+	
+	@RequestMapping(path = "deleteProfile.do")
+	public String deleted() {
+		return "deleteProfile";
+	}
 }
