@@ -39,4 +39,11 @@ public class TableTennisController {
 	public String deleted() {
 		return "deleteProfile";
 	}
+	
+	@RequestMapping(path="createProfile.do")
+	public String createUserProfile(User user, Model model) {
+		User newUser = dao.createUser(user);
+		model.addAttribute("user", newUser);
+		return "viewYourProfile";
+}
 }

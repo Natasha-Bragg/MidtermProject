@@ -112,6 +112,15 @@
 <div class="col-sm-10">
 <input type="text" readonly class="form-control-plaintext" id="staticSkillLevel" value="${user.skillLevel.level_name}">
 </div>
+<div class="row">
+<div class="col">
+</div>
+<div class="col">
+</div>
+<div class="col">
+<a class="btn btn-light my-2 my-sm-0" role="button" href="createGame.do">Challenge This Player!</a>
+</div>
+</div>
 </form>
 </c:if>
 <br>
