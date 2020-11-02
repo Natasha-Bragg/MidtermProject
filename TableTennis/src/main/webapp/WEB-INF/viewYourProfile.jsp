@@ -53,7 +53,7 @@
 <div class="container-fluid">
 <h1>Profile</h1>
 <c:if test="${! empty user}">
-<form action="updateProfile.do" method="POST">
+<form>
 <div class="form-group row">
 <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
 </div>

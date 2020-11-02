@@ -79,6 +79,7 @@
 							<tr class="text-center">
 								<td>${user.firstName} ${user.lastName}</td>
 								<td>${user.address.city}(${user.address.state})</td>
+								<td>${user.skillLevel}</td>
 							</tr>
 						</c:forEach>
 					</c:when>

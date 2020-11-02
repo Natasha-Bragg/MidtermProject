@@ -53,7 +53,7 @@
 <div class="container-fluid">
 <h1>Profile</h1>
 <c:if test="${! empty user}">
-<form>
+<form action="updateProfile.do">
 <div class="form-group row">
 <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
 </div>
@@ -142,10 +142,22 @@
 <div class="col">
 </div>
 <div class="col">
-
+</div>
+</div>
+<div class="form-group row">
+<label for="skillLevel" class="col-sm-2 col-form-label">SkillLevel</label>
+</div>
+<div class="col-sm-10">
+<input type="text"   class="form-control" id="skillLevel" value="${user.skillLevel.level_name}" readonly>
+</div>
+<div class="row">
+<div class="col">
 </div>
 <div class="col">
-<button class="btn btn-light my-2 my-sm-0" type="submit" name="id" value="{$user.id}">Submit</button>
+<a class="btn btn-light my-2 my-sm-0" role="button" href="deleteProfile.do">Delete Profile</a>
+</div>
+<div class="col">
+<button class="btn btn-light my-2 my-sm-0" type="submit" name="id" value="${user.id}">Update Profile</button>
 </div>
 </div>
 </form>
