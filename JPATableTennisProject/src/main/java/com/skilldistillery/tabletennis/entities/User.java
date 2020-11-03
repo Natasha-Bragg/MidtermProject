@@ -21,7 +21,7 @@ public class User {
 	private int id;
 	private String email;
 	private String password;
-	private int enabled;
+	private Boolean enabled;
 	private String role;
 
 	@Column(name = "first_name")
@@ -30,8 +30,8 @@ public class User {
 	@Column(name = "last_name")
 	private String lastName;
 
-	private int host;
-	private int travel;
+	private Boolean host;
+	private Boolean travel;
 
 	@Column(name = "profile_image_url")
 	private String profileImageUrl;
@@ -63,8 +63,8 @@ public class User {
 		super();
 	}
 
-	public User(int id, String email, String password, int enabled, String role, String firstName, String lastName,
-			int host, int travel, String profileImageUrl) {
+	public User(int id, String email, String password, Boolean enabled, String role, String firstName, String lastName,
+			Boolean host, Boolean travel, String profileImageUrl) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -111,11 +111,11 @@ public class User {
 		this.password = password;
 	}
 
-	public int getEnabled() {
+	public Boolean getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(int enabled) {
+	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 
@@ -143,19 +143,19 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public int getHost() {
+	public Boolean getHost() {
 		return host;
 	}
 
-	public void setHost(int host) {
+	public void setHost(Boolean host) {
 		this.host = host;
 	}
 
-	public int getTravel() {
+	public Boolean getTravel() {
 		return travel;
 	}
 
-	public void setTravel(int travel) {
+	public void setTravel(Boolean travel) {
 		this.travel = travel;
 	}
 

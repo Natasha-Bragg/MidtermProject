@@ -129,13 +129,16 @@
 </div>
 <div class="col-sm-10">
 <select class="form-control" id="skillLevel">
-<c:if test="${! empty skillLevel }">
 <c:forEach var="skill" items="${skillLevels}">
-<c:if test="${skill.level_name} == ${user.skillLevel.level.name}" selected="true">
-<option value="${skill.id}">${skill.level_name}</option>
-</c:if>
+<c:choose>
+<c:when test="${skill.levelName} == ${user.skillLevel.levelName}">
+<option value="${skill.id}" selected>${skill.levelName}</option>
+</c:when>
+<c:otherwise>
+<option value="${skill.id}">${skill.levelName}</option>
+</c:otherwise>
+</c:choose>
 </c:forEach>
-</c:if>
 </select>
 </div>
 <div class="row">

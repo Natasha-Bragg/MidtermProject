@@ -10,5 +10,8 @@ public interface TableTennisDAO {
 	List<User> findAll();
 	User createUser(User user);
 	User login(User user);
+	boolean isEmailUnique(String email);
+	User getUserByEmail(String email);
+	boolean isValidUser(String email, String password);
 	
 }

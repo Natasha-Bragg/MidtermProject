@@ -31,15 +31,24 @@ public class TableTennisController {
 
 	@RequestMapping(path = "login.do", method = RequestMethod.POST)
 	public String doLogin(Model model, @ModelAttribute("user") @Valid User user, Errors errors, HttpSession session) {
-		User loggedInUser = dao.login(user);
+		User loggedInUser = dao.getUserByEmail(user.getEmail());
 		if (loggedInUser == null) {
 			errors.rejectValue("email", "error.email", "Invalid email or password");
+		} else {
+			// TODO: Else if the user is not valid (isValidUser), use the Errors object to
+			// reject
+			// the password with the message "Incorrect password"
+			boolean isValidUser = dao.isValidUser(loggedInUser.getEmail(), loggedInUser.getPassword());
+			if (!isValidUser) {
+				errors.rejectValue("password", "error.password", "Incorrect password");
+			}
 		}
 		if (errors.getErrorCount() != 0) {
 			return "login";
 		}
 		session.setAttribute("loginUser", loggedInUser);
-		model.addAttribute("user", loggedInUser);
+		List<User> userList = dao.findAll();
+		model.addAttribute("users", userList);
 		return "home";
 	}
 
@@ -72,5 +81,17 @@ public class TableTennisController {
 		model.addAttribute("user", newUser);
 		return "viewYourProfile";
 
+	}
+	@RequestMapping(path = "viewOtherProfile.do")
+	public String showOtherProfile(int id, Model model) {
+		User user = dao.findById(id);
+		model.addAttribute("user", user);
+		return "viewOtherProfile";
+	}
+	@RequestMapping(path = "createGame.do")
+	public String createGame(int id, Model model) {
+		User user = dao.findById(id);
+		model.addAttribute("user", user);
+		return "viewOtherProfile";
 	}
 }
