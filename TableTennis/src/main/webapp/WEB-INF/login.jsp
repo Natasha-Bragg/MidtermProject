@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,8 +54,20 @@
 	</nav>
 
 	<h2>Login</h2>
+	
+	<form:form action="login.do" method="POST" modelAttribute="user">
+  <form:label path="email">Email:</form:label>
+  <form:input path="email" />
+  <form:errors path="email" />
+  <br />
+  <form:label path="password">Password:</form:label>
+  <form:input path="password" />
+  <form:errors path="password" />
+  <br />
+  <input type="submit" value="Login" />
+</form:form>
 
-	<form>
+<!-- 	<form>
 		<div class="container">
 			<label>E-mail : </label> <input type="text"
 				placeholder="Enter E-mail" name="username" required> <br>
@@ -64,6 +78,6 @@
 			me <a class="btn btn-light my-2 my-sm-0" role="button"
 				href="landing.do">Cancel</a> Forgot <a href="#"> password? </a>
 		</div>
-	</form>
+	</form> -->
 </body>
 </html>
