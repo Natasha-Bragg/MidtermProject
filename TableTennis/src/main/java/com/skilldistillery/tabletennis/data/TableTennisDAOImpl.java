@@ -15,7 +15,7 @@ import com.skilldistillery.tabletennis.entities.User;
 @Transactional
 @Service
 public class TableTennisDAOImpl implements TableTennisDAO {
-	
+
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("TableTennisProject");
 
 	@PersistenceContext
@@ -28,22 +28,24 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 
 	@Override
 	public List<User> findAll() {
-String q = "SELECT u FROM User u";
-List<User> userList = em.createQuery(q, User.class)
-						.getResultList();
+		String q = "SELECT u FROM User u";
+		List<User> userList = em.createQuery(q, User.class).getResultList();
 		return userList;
 	}
-	
+
 	@Override
 	public User createUser(User user) {
-		em = emf.createEntityManager();
+		if (isEmailUnique(user.getEmail())) {
+			em = emf.createEntityManager();
 
-	    em.getTransaction().begin();
-	    em.persist(user);
-	    em.flush();
-	    em.getTransaction().commit();
-		em.close();
-		return user;
+			em.getTransaction().begin();
+			em.persist(user);
+			em.flush();
+			em.getTransaction().commit();
+			em.close();
+			return user;
+		}
+		return null;
 	}
 
 	@Override
@@ -53,6 +55,56 @@ List<User> userList = em.createQuery(q, User.class)
 		.setParameter("id", user.getId())
 		.getSingleResult();
 		return null;
+	}
+
+	@Override
+	public boolean isEmailUnique(String email) {
+		em = emf.createEntityManager();
+		String jpql = "SELECT u.email FROM User u WHERE email = :x";
+		List<String> emailString = em.createQuery(jpql, String.class).setParameter("x", email).getResultList();
+
+		if (0 != emailString.size()) {
+			return false;
+		}
+
+		return true;
+	}
+
+	@Override
+	public User getUserByEmail(String email) {
+		em = emf.createEntityManager();
+		String jpql = "SELECT u FROM User u WHERE email = :x";
+		List<User> users = em.createQuery(jpql, User.class).setParameter("x", email).getResultList();
+
+		if (users.size() != 0) {
+			return users.get(0);
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public boolean isValidUser(String email, String password) {
+//		em = emf.createEntityManager();
+//		String jpql = "SELECT u FROM User u WHERE id = ?";
+//		User user = em.createQuery(jpql, User.class).setParameter("id", u.getId()).getSingleResult();
+//
+//		if (user == null) {
+//			return false;
+//		}
+//		
+//		else 
+//
+//		return true;
+
+		User user = getUserByEmail(email);
+		if (getUserByEmail(email) == null) {
+			return false;
+		}
+		if (user.getPassword().equals(password)) {
+			return true;
+		}
+		return false;
 	}
 
 }
