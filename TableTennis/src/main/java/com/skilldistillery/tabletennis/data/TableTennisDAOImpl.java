@@ -46,4 +46,10 @@ List<User> userList = em.createQuery(q, User.class)
 		return user;
 	}
 
+	@Override
+	public User login(User user) {
+		// TODO Auto-generated method stub
+		return user;
+	}
+
 }
