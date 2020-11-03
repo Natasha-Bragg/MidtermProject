@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.tabletennis.data.TableTennisDAO;
+import com.skilldistillery.tabletennis.entities.Game;
 import com.skilldistillery.tabletennis.entities.User;
 
 @Controller
@@ -21,6 +22,7 @@ public class TableTennisController {
 
 	@Autowired
 	private TableTennisDAO dao;
+	private List<User> loggedInUsers;
 
 	@RequestMapping(path = { "/", "landing.do" })
 	public String landing(Model model) {
@@ -46,6 +48,7 @@ public class TableTennisController {
 		if (errors.getErrorCount() != 0) {
 			return "login";
 		}
+		this.loggedInUsers.add(loggedInUser);
 		session.setAttribute("loginUser", loggedInUser);
 		List<User> userList = dao.findAll();
 		model.addAttribute("users", userList);
@@ -88,10 +91,21 @@ public class TableTennisController {
 		model.addAttribute("user", user);
 		return "viewOtherProfile";
 	}
-	@RequestMapping(path = "createGame.do")
-	public String createGame(int id, Model model) {
-		User user = dao.findById(id);
-		model.addAttribute("user", user);
-		return "viewOtherProfile";
+	@RequestMapping(path = "createGame.do", method = RequestMethod.POST)
+	public String createGame(Model model, HttpSession session, Game game) {
+		User challenger = dao.findById(loggedInUser.getId());
+		User challengedUser = dao.findById(game.getPlayerTwo().getId());
+		Game g = dao.createGame(challengedUser, challenger, game);
+		session.setAttribute("loginUser", loggedInUser);
+		model.addAttribute("game", g);
+		return "updateGame";
 	}
+	
+	@RequestMapping(path = "createGame.do", method = RequestMethod.GET)
+	public String showCreateGameForm(Model model, int id, HttpSession session) {
+		session.setAttribute("loginUser", loggedInUser);
+		model.addAttribute("user", dao.findById(id));
+		return "createGame";
+	}
+	
 }

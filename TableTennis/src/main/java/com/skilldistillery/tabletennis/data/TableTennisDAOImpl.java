@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.tabletennis.entities.Game;
 import com.skilldistillery.tabletennis.entities.User;
 
 @Transactional
@@ -46,12 +47,6 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 			return user;
 		}
 		return null;
-	}
-
-	@Override
-	public User login(User user) {
-		// TODO Auto-generated method stub
-		return user;
 	}
 
 	@Override
@@ -102,6 +97,19 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Game createGame(User challengedUser, User challenger, Game game) {
+		em = emf.createEntityManager();
+		Game g = new Game();
+		g.setPlayerOne(challengedUser);
+		g.setPlayerTwo(challenger);
+		g.setDateTime(game.getDateTime());
+		g.setVenue(game.getVenue());
+		g.setAddress(game.getAddress());
+		
+		return g;
 	}
 
 }

@@ -84,7 +84,7 @@
 	<input type="checkbox" name="travel"/><br>
     
     
-    <input type="submit" value="Create Profile" style="float: right;" />
+    <button class="btn btn-outline-primary" type="submit" name="id" value="0">Submit</button>
   </form>
 </div>
 </body>

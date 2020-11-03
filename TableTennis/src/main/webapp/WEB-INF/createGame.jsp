@@ -57,21 +57,23 @@
 		</div>
 	</nav>
 	<br>
+	<strong>${sessionScope.loggedInUser.id}</strong>
 	<div class="container-fluid">
 		<h1 class="text-center">Organize Your Game</h1>
 		<br>
-		<form action="createGame.do" method="GET">
-			Player One: <br> <input type="text" name="playerOne" /> <br>
-			Player Two: <br> <input type="text" name="playerTwo" /> <br>
+	<c:if test="${! empty user }">
+		<form action="createGame.do" method="POST">
+			Player One: <br> <input type="text" readonly name="playerOne" value="${user.firstName} ${user.lastName}"/> <br>
+			Player Two: <br> <input type="text" readonly name="playerTwo" value="${sessionScope.loggedInUser.id }"/> <br>
 			Venue: <br> <input type="text" name="venue" /> <br> 
 			Street: <br> <input type="text" name="street" /> <br> 
 			City: <br> <input type="text" name="city" /> <br> 
 			State: <br> <input type="text" name="state" /> <br> 
 			Date: <br> <input type="text" name="date" /> <br> 
 			Time: <br> <input type="text" name="time" /> <br> 
-			
-			<a class="btn btn-light my-2 my-sm-0" role="button" href="createGame.do">Submit</a>
+			<button class="btn btn-outline-primary" type="submit" name="id" value="0">Submit</button>
 		</form>
+		</c:if>
 	</div>
 	<br>
 </body>

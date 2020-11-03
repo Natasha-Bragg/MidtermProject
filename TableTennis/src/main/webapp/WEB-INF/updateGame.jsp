@@ -62,55 +62,55 @@
 			<div class="form-group row">
 				<label for="staticPlayerOne" class="col-sm-2 col-form-label">Player
 					One</label>
-			</div>
 			<div class="col-sm-10">
 				<input type="text" readonly class="form-control-plaintext"
 					id="playerOne" value="${game.playerOne}">
 			</div>
+			</div>
 			<div class="form-group row">
 				<label for="staticPlayerTwo" class="col-sm-2 col-form-label">Player
 					Two</label>
-			</div>
 			<div class="col-sm-10">
 				<input type="text" readonly class="form-control-plaintext"
 					id="playerTwo" value="${game.playerTwo}">
 			</div>
+			</div>
 			<div class="form-group row">
 				<label for="staticStreet" class="col-sm-2 col-form-label">Street</label>
-			</div>
 			<div class="col-sm-10">
 				<input type="text" readonly class="form-control-plaintext"
 					id="street" value="${user.address.street}">
 			</div>
+			</div>
 			<div class="form-group row">
 				<label for="staticStreet" class="col-sm-2 col-form-label">Venue</label>
-			</div>
 			<div class="col-sm-10">
 				<input type="text" readonly class="form-control-plaintext"
 					id="street" value="${game.venue}">
 			</div>
+			</div>
 			<div class="form-group row">
 				<div class="col">
 					<label for="staticCity" class="col-sm-2 col-form-label">City</label>
-				</div>
 				<div class="col-sm-10">
 					<input type="text" readonly class="form-control-plaintext"
 						id="city" value="${user.address.city}">
 				</div>
+				</div>
 				<div class="col">
 					<label for="staticState" class="col-sm-2 col-form-label">State</label>
-				</div>
 				<div class="col-sm-10">
 					<input type="text" readonly class="form-control-plaintext"
 						id="city" value="${user.address.state}">
 				</div>
+				</div>
 			</div>
 			<div class="form-group row">
 				<label for="staticDate" class="col-sm-2 col-form-label">Date</label>
-			</div>
 			<div class="col-sm-10">
 				<input type="text" readonly class="form-control-plaintext"
 					id="staticEmail" value="${game.date}">
+			</div>
 			</div>
 			<div class="row">
 				<div class="col"></div>
@@ -119,7 +119,7 @@
 				</div>
 				<div class="col">
 					<a class="btn btn-light my-2 my-sm-0" role="button"
-						href="updateGame.do">Update Game</a>
+						href="deleteGame.do?${game.id}">Delete Game</a>
 				</div>
 			</div>
 		</form>
