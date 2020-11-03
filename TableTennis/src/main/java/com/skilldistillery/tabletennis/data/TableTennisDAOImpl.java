@@ -48,8 +48,11 @@ List<User> userList = em.createQuery(q, User.class)
 
 	@Override
 	public User login(User user) {
-		// TODO Auto-generated method stub
-		return user;
+		String s = "SELECT u FROM User u WHERE id=?";
+		User u = em.createQuery(s, User.class)
+		.setParameter("id", user.getId())
+		.getSingleResult();
+		return null;
 	}
 
 }
