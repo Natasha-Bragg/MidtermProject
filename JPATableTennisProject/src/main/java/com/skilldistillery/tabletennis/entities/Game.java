@@ -17,8 +17,8 @@ public class Game {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "date_time")
-	private LocalDateTime dateTime;
+	@Column(name = "d_time")
+	private LocalDateTime gameTime;
 
 	private String venue;
 
@@ -52,12 +52,12 @@ public class Game {
 		this.id = id;
 	}
 
-	public LocalDateTime getDateTime() {
-		return dateTime;
+	public LocalDateTime getGameTime() {
+		return gameTime;
 	}
 
-	public void setDateTime(LocalDateTime dateTime) {
-		this.dateTime = dateTime;
+	public void setGameTime(LocalDateTime dateTime) {
+		this.gameTime = dateTime;
 	}
 
 	public String getVenue() {
@@ -110,9 +110,9 @@ public class Game {
 
 	@Override
 	public String toString() {
-		return "Game [id=" + id + ", dateTime=" + dateTime + ", venue=" + venue + ", result=" + result
-				+ ", playerOneId=" + playerOne + ", playerTwoId=" + playerTwo + ", winnerId=" + winner
-				+ ", addressId=" + address + "]";
+		return "Game [id=" + id + ", dateTime=" + gameTime + ", venue=" + venue + ", result=" + result
+				+ ", playerOneId=" + playerOne + ", playerTwoId=" + playerTwo + ", winnerId=" + winner + ", addressId="
+				+ address + "]";
 	}
 
 	@Override

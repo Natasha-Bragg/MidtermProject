@@ -109,7 +109,7 @@
 				<label for="staticDate" class="col-sm-2 col-form-label">Date</label>
 			<div class="col-sm-10">
 				<input type="text" readonly class="form-control-plaintext"
-					id="staticEmail" value="${game.date}">
+					id="staticEmail" value="${game.gameTime}">
 			</div>
 			</div>
 			<div class="row">

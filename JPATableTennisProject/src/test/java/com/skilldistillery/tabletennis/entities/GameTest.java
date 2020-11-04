@@ -51,10 +51,10 @@ class GameTest {
 	@Test
 	void test2() {
 		assertNotNull(game);
-		assertEquals(2020, game.getDateTime().getYear());
-		assertEquals(10, game.getDateTime().getMonthValue());
-		assertEquals(29, game.getDateTime().getDayOfMonth());
-		assertEquals(2, game.getDateTime().getHour());
+		assertEquals(2020, game.getGameTime().getYear());
+		assertEquals(10, game.getGameTime().getMonthValue());
+		assertEquals(29, game.getGameTime().getDayOfMonth());
+		assertEquals(2, game.getGameTime().getHour());
 	}
 
 	@Test

@@ -59,20 +59,18 @@
 		<c:if test="${! empty opponent}">
 			<form action="createGame.do" method="POST">
 				<input type="hidden" name="oppId" value="${opponent.id}">
-				<input type="hidden" name="addressId" value="${address.id}">
-
 				<%-- Player One: <br> <input type="text" readonly name="playerOne" id="${opponent}" placeholder="${opponent.firstName} ${opponent.lastName}"/> <br>
 			Player Two: <br> <input type="text" readonly name="playerTwo" id="${sessionScope.loginUser}" placeholder="${sessionScope.loginUser.firstName} ${sessionScope.loginUser.lastName}"/> <br> --%>
 				<label>${opponent.firstName} ${opponent.lastName}</label> <label>${sessionScope.loginUser.firstName}
 					${sessionScope.loginUser.lastName}</label> Venue: <br> <input
-					type="text" name="venue" /> <br> Street: <br> <input
-					type="text" name="street" /> <br> City: <br> <input
-					type="text" name="city" /> <br> State: <br> <input
-					type="text" name="state" /> <br>
-				<fmt:parseDate value="${game.dateTime}" type="date"
+					type="text" name="venue" value=""/> <br> Street: <br> <input
+					type="text" name="street" value=""/> <br> City: <br> <input
+					type="text" name="city" value=""/> <br> State: <br> <input
+					type="text" name="state" value="" /> <br>
+				<fmt:parseDate value="${game.gameTime}" type="date"
 					pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" />
 				<fmt:formatDate type="both" value="${parsedDate}" />
-				Date: <br> <input type="datetime-local" name="dateTime" value="${game.dateTime}"/> 
+				Date: <br> <input type="datetime-local" name="gameTime" value="${game.dateTime}"/> 
 <!-- 				Date: <br> <input type="datetime-local" name="dateTime" /> <br>
  -->				<!-- Time: <br> <input type="text" name="time" /> -->
 				<br> <br>

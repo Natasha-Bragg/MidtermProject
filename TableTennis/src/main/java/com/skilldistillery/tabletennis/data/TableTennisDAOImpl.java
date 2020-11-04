@@ -3,8 +3,6 @@ package com.skilldistillery.tabletennis.data;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -19,7 +17,6 @@ import com.skilldistillery.tabletennis.entities.User;
 @Service
 public class TableTennisDAOImpl implements TableTennisDAO {
 
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("TableTennisProject");
 
 	@PersistenceContext
 	private EntityManager em;
@@ -37,22 +34,20 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 	}
 
 	@Override
-	public User createUser(User user) {
+	public User createUser(User user, Address address, SkillLevel skillLevel) {
 		if (isEmailUnique(user.getEmail())) {
-			em = emf.createEntityManager();
-
-			em.getTransaction().begin();
+			user.setAddress(address);
+			user.setSkillLevel(skillLevel);
+			em.persist(skillLevel);
+			em.persist(address);
 			em.persist(user);
 			em.flush();
-			em.getTransaction().commit();
-			em.close();
 			return user;
 		}
 		return null;
 	}
 
 	public boolean isEmailUnique(String email) {
-		em = emf.createEntityManager();
 		String jpql = "SELECT u.email FROM User u WHERE email = :x";
 		List<String> emailString = em.createQuery(jpql, String.class).setParameter("x", email).getResultList();
 
@@ -65,7 +60,6 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 
 	@Override
 	public User getUserByEmail(String email) {
-		em = emf.createEntityManager();
 		String jpql = "SELECT u FROM User u WHERE email = :x";
 		List<User> users = em.createQuery(jpql, User.class).setParameter("x", email).getResultList();
 
@@ -101,36 +95,23 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 	}
 
 	@Override
-	public Game createGame(User challengedUser, User challenger, Game game) {
-		em = emf.createEntityManager();
-		Game g = new Game();
-		Address a = new Address();
-		em.getTransaction().begin();
+	public Game createGame(User challengedUser, User challenger, Game game, Address address) {
+		game.setAddress(address);
+		game.setPlayerOne(challengedUser);
+		game.setPlayerTwo(challenger);
+		
 
-		g.setPlayerOne(challengedUser);
-		g.setPlayerTwo(challenger);
-		g.setDateTime(game.getDateTime());
-		g.setVenue(game.getVenue());
-		a.setStreet(game.getAddress().getStreet());
-		a.setCity(game.getAddress().getCity());
-		a.setState(game.getAddress().getState());
-		g.setAddress(a);
-
-		em.persist(g);
-		em.persist(a);
+		em.persist(address);
+		em.persist(game);
 		em.flush();
-		em.getTransaction().commit();
-		em.close();
 
-		return g;
+		return game;
 	}
 
 	@Override
 	public List<SkillLevel> getSkillLevelList() {
-		em = emf.createEntityManager();
 		String q = "SELECT s FROM SkillLevel s";
-		List<SkillLevel> skillLevels = em.createQuery(q, SkillLevel.class)
-										.getResultList();
+		List<SkillLevel> skillLevels = em.createQuery(q, SkillLevel.class).getResultList();
 		return skillLevels;
 	}
 

@@ -86,7 +86,7 @@ DROP TABLE IF EXISTS `game` ;
 
 CREATE TABLE IF NOT EXISTS `game` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `date_time` DATE NOT NULL,
+  `d_time` DATETIME NOT NULL,
   `venue` VARCHAR(100) NOT NULL,
   `result` VARCHAR(100) NULL,
   `player_one_id` INT NOT NULL,
@@ -289,7 +289,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `tabletennisprojectdb`;
-INSERT INTO `game` (`id`, `date_time`, `venue`, `result`, `player_one_id`, `player_two_id`, `winner_id`, `address_id`, `enabled`) VALUES (1, '2020-10-29 13:14:03', 'Ashley\'s house', 'Ashley won', 1, 2, 1, 1, DEFAULT);
+INSERT INTO `game` (`id`, `d_time`, `venue`, `result`, `player_one_id`, `player_two_id`, `winner_id`, `address_id`, `enabled`) VALUES (1, '2020-10-29 13:14:03', 'Ashley\'s house', 'Ashley won', 1, 2, 1, 1, DEFAULT);
 
 COMMIT;
 
