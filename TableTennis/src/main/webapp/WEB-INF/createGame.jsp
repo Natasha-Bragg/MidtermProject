@@ -46,11 +46,7 @@
 		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="btn btn-light my-2 my-sm-0"
-					role="button" href="viewYourProfile.do">View Your Profile</a></li>
-			</ul>
-		</div>
-		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-			<ul class="navbar-nav ml-auto">
+					role="button" href="viewYourProfile.do?${sessionScope.loginUser.email}">View Your Profile</a></li>
 				<li class="nav-item"><a class="btn btn-light my-2 my-sm-0"
 					role="button" href="logout.do">Logout</a></li>
 			</ul>

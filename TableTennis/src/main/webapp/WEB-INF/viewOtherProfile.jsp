@@ -55,26 +55,31 @@
 		<h1>Profile</h1>
 		<c:if test="${! empty user}">
 			<form>
-				<div class="form-group">
+				<div class="form-row">
+				<div class="form-group col-md-6">
 					<label for="staticFirstName">First Name</label> <input type="text"
 						readonly class="form-control" id="firstName"
 						value="${user.firstName}">
 				</div>
-				<div class="form-group">
+				</div>
+					<div class="form-row">
+				<div class="form-group col-md-6">
 					<label for="staticLastName">Last Name</label> <input type="text"
 						readonly class="form-control" id="firstName"
 						value="${user.lastName}">
 				</div>
+					</div>
 	<div class="form-row">
-		<div class="form-group col-md-6">
+		<div class="form-group col-md-3">
 			<label for="staticCity">City</label> <input type="text" readonly
 				class="form-control" id="city" value="${user.address.city}">
 		</div>
-	<div class="form-group col-md-6">
+	<div class="form-group col-md-3">
 		<label for="staticState">State</label> <input type="text" readonly
 			class="form-control" id="city" value="${user.address.state}">
 	</div>
 	</div>
+		<div class="form-row">
 	<div class="form-group col-md-6">
 		<div class="form-check">
 			<c:choose>
@@ -85,8 +90,9 @@
 					<input type="checkbox" id="staticHost" value="">
 				</c:when>
 			</c:choose>
-	<label for="staticHost">Host</label>
+		<label for="staticHost">Host</label>
 		</div>
+	</div>
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">
@@ -105,22 +111,17 @@
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">
-			<label for="staticSkillLevel">SkillLevel</label>
-			<div class="col-sm-6">
+			<label for="staticSkillLevel">Skill Level</label>
 				<input type="text" readonly class="form-control"
 					id="staticSkillLevel" value="${user.skillLevel.levelName}">
 			</div>
 		</div>
-	</div>
-	<div class=" ">
-		<div class="col"></div>
-		<div class="col"></div>
-		<div class="col">
-			<a class="btn btn-light my-2 my-sm-0" role="button"
+	<div class="form-row">
+			<a class="btn btn-outline-primary my-2 my-sm-0" role="button"
 				href="createGame.do?id=${user.id }">Challenge This Player!</a>
 		</div>
-	</div>
 	</form>
 	</c:if>
+	</div>
 </body>
 </html>

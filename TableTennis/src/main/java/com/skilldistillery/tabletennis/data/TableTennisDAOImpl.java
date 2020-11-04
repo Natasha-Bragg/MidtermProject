@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.tabletennis.entities.Game;
+import com.skilldistillery.tabletennis.entities.SkillLevel;
 import com.skilldistillery.tabletennis.entities.User;
 
 @Transactional
@@ -117,6 +118,15 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 		em.close();
 
 		return g;
+	}
+
+	@Override
+	public List<SkillLevel> getSkillLevelList() {
+		em = emf.createEntityManager();
+		String q = "SELECT s FROM SkillLevel s";
+		List<SkillLevel> skillLevels = em.createQuery(q, SkillLevel.class)
+										.getResultList();
+		return skillLevels;
 	}
 
 }

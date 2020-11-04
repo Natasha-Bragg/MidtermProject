@@ -3,6 +3,7 @@ package com.skilldistillery.tabletennis.data;
 import java.util.List;
 
 import com.skilldistillery.tabletennis.entities.Game;
+import com.skilldistillery.tabletennis.entities.SkillLevel;
 import com.skilldistillery.tabletennis.entities.User;
 
 public interface TableTennisDAO {
@@ -14,5 +15,6 @@ public interface TableTennisDAO {
 	User getUserByEmail(String email);
 	boolean isValidUser(String email, String password);
 	Game createGame(User challengedUser, User challenger, Game game);
+	List<SkillLevel> getSkillLevelList();
 	
 }

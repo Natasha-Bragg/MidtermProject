@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.tabletennis.data.TableTennisDAO;
 import com.skilldistillery.tabletennis.entities.Game;
+import com.skilldistillery.tabletennis.entities.SkillLevel;
 import com.skilldistillery.tabletennis.entities.User;
 
 @Controller
@@ -70,10 +71,14 @@ public class TableTennisController {
 	}
 
 	@RequestMapping(path = "home.do")
-	public String home(Model model) {
-		List<User> userList = dao.findAll();
+	public String home(Model model, HttpSession session) {
+		if(session.getAttribute("loginUser") != null) {
+			List<User> userList = dao.findAll();
 		model.addAttribute("users", userList);
 		return "home";
+		}
+		else {return "redirect:landing.do";}
+		
 	}
 
 	@RequestMapping(path = "deleteProfile.do")
@@ -100,6 +105,13 @@ public class TableTennisController {
 		model.addAttribute("user", user);
 		return "viewOtherProfile";
 	}
+	@RequestMapping(path = "viewYourProfile.do")
+	public String showYourProfile(Model model, HttpSession session) {
+		List<SkillLevel> skillLevelList = dao.getSkillLevelList();
+		model.addAttribute("user", session.getAttribute("loginUser"));
+		model.addAttribute("skillLevels", skillLevelList);
+		return "viewYourProfile";
+	}
 
 	@RequestMapping(path = "createGame.do", method = RequestMethod.POST)
 	public String createGame(Model model, HttpSession session, Game game, int oppId) {
@@ -113,9 +125,17 @@ public class TableTennisController {
 
 	@RequestMapping(path = "createGame.do", method = RequestMethod.GET)
 	public String showCreateGameForm(Model model, int id, HttpSession session) {
-//		session.setAttribute("loginUser", loggedInUser);
+		if(session.getAttribute("loginUser") != null) {
 		model.addAttribute("opponent", dao.findById(id));
 		return "createGame";
+		}
+		else {return "redirect:landing.do";}
+	}
+	
+	@RequestMapping(path = "logout.do")
+	public String logout(HttpSession session, Model model) {
+		session.removeAttribute("loginUser");
+		return "redirect:landing.do";
 	}
 
 	@InitBinder
