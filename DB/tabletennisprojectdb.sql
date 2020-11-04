@@ -86,12 +86,12 @@ DROP TABLE IF EXISTS `game` ;
 
 CREATE TABLE IF NOT EXISTS `game` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `date_time` DATE NULL,
-  `venue` VARCHAR(100) NULL,
+  `date_time` DATE NOT NULL,
+  `venue` VARCHAR(100) NOT NULL,
   `result` VARCHAR(100) NULL,
   `player_one_id` INT NOT NULL,
   `player_two_id` INT NOT NULL,
-  `winner_id` INT NOT NULL,
+  `winner_id` INT NULL,
   `address_id` INT NOT NULL,
   `enabled` TINYINT(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),

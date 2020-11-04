@@ -51,7 +51,6 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 		return null;
 	}
 
-	@Override
 	public boolean isEmailUnique(String email) {
 		em = emf.createEntityManager();
 		String jpql = "SELECT u.email FROM User u WHERE email = :x";
