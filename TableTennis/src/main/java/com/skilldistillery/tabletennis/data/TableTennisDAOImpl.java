@@ -103,12 +103,19 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 	public Game createGame(User challengedUser, User challenger, Game game) {
 		em = emf.createEntityManager();
 		Game g = new Game();
+		em.getTransaction().begin();
+
 		g.setPlayerOne(challengedUser);
 		g.setPlayerTwo(challenger);
 		g.setDateTime(game.getDateTime());
 		g.setVenue(game.getVenue());
 		g.setAddress(game.getAddress());
-		
+
+		em.persist(g);
+		em.flush();
+		em.getTransaction().commit();
+		em.close();
+
 		return g;
 	}
 

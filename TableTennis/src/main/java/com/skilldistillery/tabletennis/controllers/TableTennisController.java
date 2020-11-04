@@ -1,14 +1,24 @@
 package com.skilldistillery.tabletennis.controllers;
 
+import java.beans.PropertyEditorSupport;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +32,6 @@ public class TableTennisController {
 
 	@Autowired
 	private TableTennisDAO dao;
-	private List<User> loggedInUsers;
 
 	@RequestMapping(path = { "/", "landing.do" })
 	public String landing(Model model) {
@@ -48,7 +57,6 @@ public class TableTennisController {
 		if (errors.getErrorCount() != 0) {
 			return "login";
 		}
-		this.loggedInUsers.add(loggedInUser);
 		session.setAttribute("loginUser", loggedInUser);
 		List<User> userList = dao.findAll();
 		model.addAttribute("users", userList);
@@ -85,27 +93,69 @@ public class TableTennisController {
 		return "viewYourProfile";
 
 	}
+
 	@RequestMapping(path = "viewOtherProfile.do")
 	public String showOtherProfile(int id, Model model) {
 		User user = dao.findById(id);
 		model.addAttribute("user", user);
 		return "viewOtherProfile";
 	}
+
 	@RequestMapping(path = "createGame.do", method = RequestMethod.POST)
-	public String createGame(Model model, HttpSession session, Game game) {
-		User challenger = dao.findById(loggedInUser.getId());
-		User challengedUser = dao.findById(game.getPlayerTwo().getId());
+	public String createGame(Model model, HttpSession session, Game game, int oppId) {
+		User challenger = (User) session.getAttribute("loginUser");
+		User challengedUser = dao.findById(oppId);
 		Game g = dao.createGame(challengedUser, challenger, game);
-		session.setAttribute("loginUser", loggedInUser);
+//		session.setAttribute("loginUser", loggedInUser);
 		model.addAttribute("game", g);
 		return "updateGame";
 	}
-	
+
 	@RequestMapping(path = "createGame.do", method = RequestMethod.GET)
 	public String showCreateGameForm(Model model, int id, HttpSession session) {
-		session.setAttribute("loginUser", loggedInUser);
-		model.addAttribute("user", dao.findById(id));
+//		session.setAttribute("loginUser", loggedInUser);
+		model.addAttribute("opponent", dao.findById(id));
 		return "createGame";
 	}
-	
+
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(true);
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+		webDataBinder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
+			@Override
+			public void setAsText(String text) throws IllegalArgumentException {
+				setValue(LocalDate.parse(text, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+			}
+
+			@Override
+			public String getAsText() throws IllegalArgumentException {
+				return DateTimeFormatter.ofPattern("yyyy-MM-dd").format((LocalDate) getValue());
+			}
+		});
+		webDataBinder.registerCustomEditor(LocalTime.class, new PropertyEditorSupport() {
+			@Override
+			public void setAsText(String text) throws IllegalArgumentException {
+				setValue(LocalTime.parse(text, DateTimeFormatter.ofPattern("HH:mm")));
+			}
+
+			@Override
+			public String getAsText() throws IllegalArgumentException {
+				return DateTimeFormatter.ofPattern("HH:mm").format((LocalTime) getValue());
+			}
+		});
+		webDataBinder.registerCustomEditor(LocalDateTime.class, new PropertyEditorSupport() {
+			@Override
+			public void setAsText(String text) throws IllegalArgumentException {
+				setValue(LocalDateTime.parse(text, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:MM")));
+			}
+
+			@Override
+			public String getAsText() throws IllegalArgumentException {
+				return DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:MM").format((LocalDateTime) getValue());
+			}
+		});
+	}
+
 }
