@@ -10,6 +10,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.tabletennis.entities.Game;
+import com.skilldistillery.tabletennis.entities.SkillLevel;
 import com.skilldistillery.tabletennis.entities.User;
 
 @Transactional
@@ -48,16 +50,6 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 		return null;
 	}
 
-	@Override
-	public User login(User user) {
-		String s = "SELECT u FROM User u WHERE id=?";
-		User u = em.createQuery(s, User.class)
-		.setParameter("id", user.getId())
-		.getSingleResult();
-		return null;
-	}
-
-	@Override
 	public boolean isEmailUnique(String email) {
 		em = emf.createEntityManager();
 		String jpql = "SELECT u.email FROM User u WHERE email = :x";
@@ -105,6 +97,35 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Game createGame(User challengedUser, User challenger, Game game) {
+		em = emf.createEntityManager();
+		Game g = new Game();
+		em.getTransaction().begin();
+
+		g.setPlayerOne(challengedUser);
+		g.setPlayerTwo(challenger);
+		g.setDateTime(game.getDateTime());
+		g.setVenue(game.getVenue());
+		g.setAddress(game.getAddress());
+
+		em.persist(g);
+		em.flush();
+		em.getTransaction().commit();
+		em.close();
+
+		return g;
+	}
+
+	@Override
+	public List<SkillLevel> getSkillLevelList() {
+		em = emf.createEntityManager();
+		String q = "SELECT s FROM SkillLevel s";
+		List<SkillLevel> skillLevels = em.createQuery(q, SkillLevel.class)
+										.getResultList();
+		return skillLevels;
 	}
 
 }

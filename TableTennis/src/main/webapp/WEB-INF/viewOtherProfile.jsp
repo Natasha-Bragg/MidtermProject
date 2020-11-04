@@ -55,82 +55,73 @@
 		<h1>Profile</h1>
 		<c:if test="${! empty user}">
 			<form>
-				<div class="form-group row">
-					<label for="staticFirstName" class="col-sm-2 col-form-label">First
-						Name</label>
-				<div class="col-sm-10">
-					<input type="text" readonly class="form-control-plaintext"
-						id="firstName" value="${user.firstName}">
+				<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="staticFirstName">First Name</label> <input type="text"
+						readonly class="form-control" id="firstName"
+						value="${user.firstName}">
 				</div>
 				</div>
-				<div class="form-group row">
-					<label for="staticLastName" class="col-sm-2 col-form-label">Last
-						Name</label>
+					<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="staticLastName">Last Name</label> <input type="text"
+						readonly class="form-control" id="firstName"
+						value="${user.lastName}">
 				</div>
-				<div class="col-sm-10">
-					<input type="text" readonly class="form-control-plaintext"
-						id="firstName" value="${user.lastName}">
-				</div>
-				<div class="form-group row">
-					<div class="col">
-						<label for="staticCity" class="col-sm-2 col-form-label">City</label>
 					</div>
-					<div class="col-sm-10">
-						<input type="text" readonly class="form-control-plaintext"
-							id="city" value="${user.address.city}">
-					</div>
-					<div class="col">
-						<label for="staticState" class="col-sm-2 col-form-label">State</label>
-					</div>
-					<div class="col-sm-10">
-						<input type="text" readonly class="form-control-plaintext"
-							id="city" value="${user.address.state}">
-					</div>
-				</div>
-				<div class="form-group row" class="col-sm-10" class="form-check">
-					<c:choose>
-						<c:when test="${user.host}">
-							<input type="checkbox" id="staticHost" value="" checked>
-						</c:when>
-						<c:when test="${!user.host}">
-							<input type="checkbox" id="staticHost" value="">
-						</c:when>
-					</c:choose>
-				</div>
-				<div>
-					<label for="staticHost" class="col-sm-2 col-form-label">Host</label>
-				</div>
-				<div class="form-group row" class="col-sm-10" class="form-check">
-					<c:choose>
-						<c:when test="${user.travel}">
-							<input type="checkbox" id="staticTravel" value="" checked>
-						</c:when>
-						<c:when test="${!user.travel}">
-							<input type="checkbox" id="staticTravel" value="">
-						</c:when>
-					</c:choose>
-				</div>
-				<div>
-					<label for="staticTravel" class="col-sm-2 col-form-label">Travel</label>
-				</div>
-				<div class="form-group row">
-					<label for="staticSkillLevel" class="col-sm-2 col-form-label">SkillLevel</label>
-				</div>
-				<div class="col-sm-10">
-					<input type="text" readonly class="form-control-plaintext"
-						id="staticSkillLevel" value="${user.skillLevel.levelName}">
-				</div>
-				<div class="row">
-					<div class="col"></div>
-					<div class="col"></div>
-					<div class="col">
-						<a class="btn btn-light my-2 my-sm-0" role="button"
-							href="createGame.do">Challenge This Player!</a>
-					</div>
-				</div>
-			</form>
-		</c:if>
-		<br>
+	<div class="form-row">
+		<div class="form-group col-md-3">
+			<label for="staticCity">City</label> <input type="text" readonly
+				class="form-control" id="city" value="${user.address.city}">
+		</div>
+	<div class="form-group col-md-3">
+		<label for="staticState">State</label> <input type="text" readonly
+			class="form-control" id="city" value="${user.address.state}">
+	</div>
+	</div>
+		<div class="form-row">
+	<div class="form-group col-md-6">
+		<div class="form-check">
+			<c:choose>
+				<c:when test="${user.host}">
+					<input type="checkbox" id="staticHost" value="" checked>
+				</c:when>
+				<c:when test="${!user.host}">
+					<input type="checkbox" id="staticHost" value="">
+				</c:when>
+			</c:choose>
+		<label for="staticHost">Host</label>
+		</div>
+	</div>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<div class="form-check">
+				<c:choose>
+					<c:when test="${user.travel}">
+						<input type="checkbox" id="staticTravel" value="" checked>
+					</c:when>
+					<c:when test="${!user.travel}">
+						<input type="checkbox" id="staticTravel" value="">
+					</c:when>
+				</c:choose>
+			<label for="staticTravel">Travel</label>
+			</div>
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label for="staticSkillLevel">Skill Level</label>
+				<input type="text" readonly class="form-control"
+					id="staticSkillLevel" value="${user.skillLevel.levelName}">
+			</div>
+		</div>
+	<div class="form-row">
+			<a class="btn btn-outline-primary my-2 my-sm-0" role="button"
+				href="createGame.do?id=${user.id }">Challenge This Player!</a>
+		</div>
+	</form>
+	</c:if>
 	</div>
 </body>
 </html>

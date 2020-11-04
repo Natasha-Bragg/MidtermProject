@@ -46,11 +46,7 @@
 		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="btn btn-light my-2 my-sm-0"
-					role="button" href="viewYourProfile.do">View Your Profile</a></li>
-			</ul>
-		</div>
-		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-			<ul class="navbar-nav ml-auto">
+					role="button" href="viewYourProfile.do?${sessionScope.loginUser.email}">View Your Profile</a></li>
 				<li class="nav-item"><a class="btn btn-light my-2 my-sm-0"
 					role="button" href="logout.do">Logout</a></li>
 			</ul>
@@ -60,18 +56,29 @@
 	<div class="container-fluid">
 		<h1 class="text-center">Organize Your Game</h1>
 		<br>
-		<form action="createGame.do" method="GET">
-			Player One: <br> <input type="text" name="playerOne" /> <br>
-			Player Two: <br> <input type="text" name="playerTwo" /> <br>
-			Venue: <br> <input type="text" name="venue" /> <br> 
-			Street: <br> <input type="text" name="street" /> <br> 
-			City: <br> <input type="text" name="city" /> <br> 
-			State: <br> <input type="text" name="state" /> <br> 
-			Date: <br> <input type="text" name="date" /> <br> 
-			Time: <br> <input type="text" name="time" /> <br> 
-			
-			<a class="btn btn-light my-2 my-sm-0" role="button" href="createGame.do">Submit</a>
-		</form>
+		<c:if test="${! empty opponent}">
+			<form action="createGame.do" method="POST">
+				<input type="hidden" name="oppId" value="${opponent.id}">
+
+				<%-- Player One: <br> <input type="text" readonly name="playerOne" id="${opponent}" placeholder="${opponent.firstName} ${opponent.lastName}"/> <br>
+			Player Two: <br> <input type="text" readonly name="playerTwo" id="${sessionScope.loginUser}" placeholder="${sessionScope.loginUser.firstName} ${sessionScope.loginUser.lastName}"/> <br> --%>
+				<label>${opponent.firstName} ${opponent.lastName}</label> <label>${sessionScope.loginUser.firstName}
+					${sessionScope.loginUser.lastName}</label> Venue: <br> <input
+					type="text" name="venue" /> <br> Street: <br> <input
+					type="text" name="street" /> <br> City: <br> <input
+					type="text" name="city" /> <br> State: <br> <input
+					type="text" name="state" /> <br>
+				<fmt:parseDate value="${game.dateTime}" type="date"
+					pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" />
+				<fmt:formatDate type="both" value="${parsedDate}" />
+				Date: <br> <input type="datetime-local" name="dateTime" value="${game.dateTime}"/> 
+<!-- 				Date: <br> <input type="datetime-local" name="dateTime" /> <br>
+ -->				<!-- Time: <br> <input type="text" name="time" /> -->
+				<br> <br>
+				<button class="btn btn-outline-primary" type="submit" name="id"
+					value="0">Submit</button>
+			</form>
+		</c:if>
 	</div>
 	<br>
 </body>

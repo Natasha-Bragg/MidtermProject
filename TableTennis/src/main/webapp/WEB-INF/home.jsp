@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Account Home</title>
+<title>Player List</title>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 
@@ -38,7 +38,7 @@
 			class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="navbar-brand mx-auto"
-					href="landing.do"><img src="logo.png" width="30" height="30"
+					href="home.do"><img src="logo.png" width="30" height="30"
 						alt="logo" loading="lazy"></a></li>
 			</ul>
 		</div>
@@ -52,15 +52,15 @@
 		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="btn btn-light my-2 my-sm-0"
-					role="button" href="viewYourProfile.do">View Your Profile</a></li>
+					role="button" href="viewYourProfile.do?${sessionScope.loginUser.email}">View Your Profile</a></li>
 				<li class="nav-item"><a class="btn btn-light my-2 my-lg-0"
-					role="button" href="landing.do">Log Out</a></li>
+					role="button" href="logout.do">Log Out</a></li>
 			</ul>
 		</div>
 	</nav>
 	<br>
 	<div class="container-fluid">
-		<h1 class="text-center">Account Home</h1>
+		<h1 class="text-center">Player List</h1>
 		<br>
 		<table id="myTable" class="table table-stripped table-hover">
 			<thead class="thead thead-dark">
@@ -78,12 +78,14 @@
 				<c:choose>
 					<c:when test="${! empty users}">
 						<c:forEach var="user" items="${users}">
+						<c:if test="${user != sessionScope.loginUser}">
 							<tr class="text-center">
 								<td><a href = "viewOtherProfile.do?id=${user.id}">${user.firstName} ${user.lastName}</a></td>
 								<td>${user.address.city} (${user.address.state})</td>
 								<td>${user.skillLevel.levelName}</td>
-								<td><button type="button">Organize a Game</button></td>
+								<td><a class="btn btn-outline-primary my-2 my-sm-0" role="button" href="createGame.do?id=${user.id}">Challenge This Player!</a></td>
 							</tr>
+							</c:if>
 						</c:forEach>
 					</c:when>
 				</c:choose>
