@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.tabletennis.entities.Address;
 import com.skilldistillery.tabletennis.entities.Game;
 import com.skilldistillery.tabletennis.entities.SkillLevel;
 import com.skilldistillery.tabletennis.entities.User;
@@ -104,15 +105,20 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 	public Game createGame(User challengedUser, User challenger, Game game) {
 		em = emf.createEntityManager();
 		Game g = new Game();
+		Address a = new Address();
 		em.getTransaction().begin();
 
 		g.setPlayerOne(challengedUser);
 		g.setPlayerTwo(challenger);
 		g.setDateTime(game.getDateTime());
 		g.setVenue(game.getVenue());
-		g.setAddress(game.getAddress());
+		a.setStreet(game.getAddress().getStreet());
+		a.setCity(game.getAddress().getCity());
+		a.setState(game.getAddress().getState());
+		g.setAddress(a);
 
 		em.persist(g);
+		em.persist(a);
 		em.flush();
 		em.getTransaction().commit();
 		em.close();

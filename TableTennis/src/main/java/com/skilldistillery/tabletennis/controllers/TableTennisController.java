@@ -168,12 +168,12 @@ public class TableTennisController {
 		webDataBinder.registerCustomEditor(LocalDateTime.class, new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
-				setValue(LocalDateTime.parse(text, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:MM")));
+				setValue(LocalDateTime.parse(text, DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")));
 			}
 
 			@Override
 			public String getAsText() throws IllegalArgumentException {
-				return DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:MM").format((LocalDateTime) getValue());
+				return DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm").format((LocalDateTime) getValue());
 			}
 		});
 	}

@@ -59,6 +59,7 @@
 		<c:if test="${! empty opponent}">
 			<form action="createGame.do" method="POST">
 				<input type="hidden" name="oppId" value="${opponent.id}">
+				<input type="hidden" name="addressId" value="${address.id}">
 
 				<%-- Player One: <br> <input type="text" readonly name="playerOne" id="${opponent}" placeholder="${opponent.firstName} ${opponent.lastName}"/> <br>
 			Player Two: <br> <input type="text" readonly name="playerTwo" id="${sessionScope.loginUser}" placeholder="${sessionScope.loginUser.firstName} ${sessionScope.loginUser.lastName}"/> <br> --%>
