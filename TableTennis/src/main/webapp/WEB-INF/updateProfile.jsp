@@ -160,9 +160,8 @@
 				</div>
 				<div class="row">
 					<div class="col">
-					<input type="submit" name="update" value="update"/>
-						<a class="btn btn-outline-primary my-2 my-sm-0" role="button"
-							href="updateProfile.do?user=${user}">Submit Changes</a> <a
+						<input class="btn btn-outline-primary my-2 my-sm-0" type="submit"
+							name="update" value="Submit Changes" /> <a
 							class="btn btn-outline-primary my-2 my-sm-0" role="button"
 							href="deleteProfile.do">Delete Profile</a>
 					</div>

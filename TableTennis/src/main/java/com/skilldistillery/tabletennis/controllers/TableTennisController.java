@@ -83,7 +83,7 @@ public class TableTennisController {
 
 	}
 
-	@RequestMapping(path = "deleteProfile.do", params="delete")
+	@RequestMapping(path = "deleteProfile.do")
 	public String deleteUser(HttpSession session, User user) {
 		if (session.getAttribute("loginUser") != null) {
 			User u = (User) session.getAttribute("loginUser");

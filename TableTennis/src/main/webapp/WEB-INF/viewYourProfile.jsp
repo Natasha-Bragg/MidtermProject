@@ -56,9 +56,9 @@
 		<h1>Profile</h1>
 		<c:if test="${! empty user}">
 			<form:form action="updateProfile.do" modelAttribute="user">
-			<%-- 	<input type="hidden" name="id" value="${user.id}" />
+				<input type="hidden" name="id" value="${user.id}" />
 				<input type="hidden" name="address.id" value="${user.address.id}" />
-				 --%><div class="form-row">
+				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="staticEmail">Email</label> <input type="text"
 							class="form-control" id="email" value="${user.email}" name="email" readonly="readonly">
@@ -111,10 +111,10 @@
 								<c:when test="${user.host}">
 								<form:hidden path="host" value="false"/>
 									<form:checkbox id="staticHost" value="true" path="host" checked="checked"
-										readonly="true"/>
+										disabled="true"/>
 								</c:when>
 								<c:when test="${!user.host}">
-									<form:checkbox id="staticHost" value="true" path="host" readonly="true"/>
+									<form:checkbox id="staticHost" value="true" path="host" disabled="true"/>
 								</c:when>
 							</c:choose>
 							<label for="staticHost">Host</label>
@@ -161,7 +161,7 @@
 				<div class="row">
 					<div class="col">
 						<a class="btn btn-outline-primary my-2 my-sm-0" role="button"
-							href="showUpdateProfile.do">Update Profile</a>
+							 href="showUpdateProfile.do">Update Profile</a>
 						<a class="btn btn-outline-primary my-2 my-sm-0" role="button"
 							href="deleteProfile.do">Delete Profile</a>
 					</div>
