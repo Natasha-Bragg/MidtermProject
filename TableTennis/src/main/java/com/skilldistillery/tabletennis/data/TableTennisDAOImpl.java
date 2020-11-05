@@ -34,12 +34,11 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 	}
 
 	@Override
-	public User createUser(User user, Address address, SkillLevel skillLevel) {
+	public User createUser(User user, Address address, int skillLevelId) {
 		if (isEmailUnique(user.getEmail())) {
-			user.setAddress(address);
-			user.setSkillLevel(skillLevel);
-			em.persist(skillLevel);
+			user.setSkillLevel(em.find(SkillLevel.class, skillLevelId));
 			em.persist(address);
+			user.setAddress(em.find(Address.class, address.getId()));
 			em.persist(user);
 			em.flush();
 			return user;
@@ -72,18 +71,6 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 
 	@Override
 	public boolean isValidUser(String email, String password) {
-//		em = emf.createEntityManager();
-//		String jpql = "SELECT u FROM User u WHERE id = ?";
-//		User user = em.createQuery(jpql, User.class).setParameter("id", u.getId()).getSingleResult();
-//
-//		if (user == null) {
-//			return false;
-//		}
-//		
-//		else 
-//
-//		return true;
-
 		User user = getUserByEmail(email);
 		if (getUserByEmail(email) == null) {
 			return false;
@@ -113,6 +100,35 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 		String q = "SELECT s FROM SkillLevel s";
 		List<SkillLevel> skillLevels = em.createQuery(q, SkillLevel.class).getResultList();
 		return skillLevels;
+	}
+
+	@Override
+	public boolean isGameDisabled(Game game) {
+		game.setEnabled(false);
+		return true;
+	}
+
+	@Override
+	public boolean isUserDisabled(User user) {
+		User userToUpdate = em.find(User.class, user.getId());
+		userToUpdate.setEnabled(false);
+		if(userToUpdate.getEnabled() == false) {
+			return true;
+		}
+		else {return false;}
+	}
+
+	@Override
+	public User updateUser(User user, Address address, int skillLevelId) {
+		User updateUser = em.find(User.class, user.getId());
+		updateUser.setEmail(user.getEmail());
+		updateUser.setFirstName(user.getFirstName());
+		updateUser.setLastName(user.getLastName());
+		updateUser.setHost(user.getHost());
+		updateUser.setTravel(user.getTravel());
+		user.setAddress(em.find(Address.class, address.getId()));
+		updateUser.setSkillLevel(em.find(SkillLevel.class, skillLevelId));
+		return user;
 	}
 
 }

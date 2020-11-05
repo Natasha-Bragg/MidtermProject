@@ -27,145 +27,134 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="navbar-brand mx-auto" href="home.do"><img src="logo.png" width="30" height="30" alt="logo" loading="lazy"></a>
-            </li>
-        </ul>
-    </div>
-    <div class="mx-auto order-0">
-        <a class="navbar-brand mx-auto" href="#"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="btn btn-light my-2 my-sm-0" role="button" href="logout.do">Logout</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<br>
-<div class="container-fluid">
-<h1>Profile</h1>
-<c:if test="${! empty user}">
-<form action="updateProfile.do">
-<div class="form-group row">
-<label for="firstName" class="col-sm-2 col-form-label">First Name</label>
-</div>
-<div class="col-sm-10">
-<input type="text"   class="form-control" id="firstName" value="${user.firstName}">
-</div>
-<div class="form-group row">
-<label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
-</div>
-<div class="col-sm-10">
-<input type="text"   class="form-control" id="firstName" value="${user.lastName}">
-</div>
-<div class="form-group row">
-<label for="street" class="col-sm-2 col-form-label">Street</label>
-</div>
-<div class="col-sm-10">
-<input type="text"   class="form-control" id="street" value="${user.address.street}">
-</div>
-<div class="form-group row">
-<div class="col">
-<label for="city" class="col-sm-2 col-form-label">City</label>
-</div>
-<div class="col-sm-10">
-<input type="text"   class="form-control" id="city" value="${user.address.city}">
-</div>
-<div class="col">
-<label for="state" class="col-sm-2 col-form-label">State</label>
-</div>
-<div class="col-sm-10">
-<input type="text"   class="form-control" id="city" value="${user.address.state}">
-</div>
-</div>
-<div class="form-group row">
-<label for="email" class="col-sm-2 col-form-label">Email</label>
-</div>
-<div class="col-sm-10">
-<input type="text"   class="form-control" id="email" value="${user.email}">
-</div>
-<div class="form-group row">
-<label for="password" class="col-sm-2 col-form-label">Password</label>
-</div>
-<div class="col-sm-10">
-<input type="text"   class="form-control" id="password" value="${user.password}">
-</div>
-<div class="form-group row" class="col-sm-10" class="form-check">
-<c:choose>
-<c:when test="${user.host} = 1">
-<input type="checkbox" id="host" value="" checked>
-</c:when>
-<c:otherwise test="${user.host} = 0">
-<input type="checkbox" id="host" value="">
-</c:otherwise>
-</c:choose>
-</div>
-<div>
-<label for="host" class="col-sm-2 col-form-label">Host</label>
-</div>
-<div class="form-group row" class="col-sm-10" class="form-check">
-<c:choose>
-<c:when test="${user.travel} = 1">
-<input type="checkbox" id="travel" value="" checked>
-</c:when>
-<c:otherwise test="${user.travel} = 0">
-<input type="checkbox" id="travel" value="">
-</c:otherwise>
-</c:choose>
-</div>
-<div>
-<label for="travel" class="col-sm-2 col-form-label">Travel</label>
-</div>
-<div class="form-group row">
-<label for="skillLevel" class="col-sm-2 col-form-label">SkillLevel</label>
-</div>
-<div class="col-sm-10">
-<select class="form-control" id="skillLevel">
-<c:forEach var="skill" items="${skillLevels}">
-<c:choose>
-<c:when test="${skill.levelName} == ${user.skillLevel.levelName}">
-<option value="${skill.id}" selected>${skill.levelName}</option>
-</c:when>
-<c:otherwise>
-<option value="${skill.id}">${skill.levelName}</option>
-</c:otherwise>
-</c:choose>
-</c:forEach>
-</select>
-</div>
-<div class="row">
-<div class="col">
-</div>
-<div class="col">
-</div>
-</div>
-<div class="form-group row">
-<label for="skillLevel" class="col-sm-2 col-form-label">SkillLevel</label>
-</div>
-<div class="col-sm-10">
-<input type="text"   class="form-control" id="skillLevel" value="${user.skillLevel.level_name}" readonly>
-</div>
-<div class="row">
-<div class="col">
-</div>
-<div class="col">
-<a class="btn btn-light my-2 my-sm-0" role="button" href="deleteProfile.do">Delete Profile</a>
-</div>
-<div class="col">
-<button class="btn btn-light my-2 my-sm-0" type="submit" name="id" value="${user.id}">Update Profile</button>
-</div>
-</div>
-</form>
-</c:if>
-<br>
-</div>
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
+		<div
+			class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="navbar-brand mx-auto"
+					href="home.do"><img src="logo.png" width="30" height="30"
+						alt="logo" loading="lazy"></a></li>
+			</ul>
+		</div>
+		<div class="mx-auto order-0">
+			<a class="navbar-brand mx-auto" href="#"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target=".dual-collapse2">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="btn btn-light my-2 my-sm-0"
+					role="button" href="logout.do">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<div class="container-fluid">
+		<h1>Profile</h1>
+		<c:if test="${! empty user}">
+			<form>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="staticEmail">Email</label> <input type="text"
+							class="form-control" id="email" value="${user.email}">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="staticPassword">Email</label> <input type="text"
+							class="form-control" id="password" value="${user.password}">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="staticFirstName">First Name</label> <input type="text"
+							class="form-control" id="firstName" value="${user.firstName}">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="staticLastName">Last Name</label> <input type="text"
+							class="form-control" id="firstName" value="${user.lastName}">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="staticStree">Street</label> <input type="text"
+							class="form-control" id="street" value="${user.address.street}">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-3">
+						<label for="staticCity">City</label> <input type="text"
+							class="form-control" id="city" value="${user.address.city}">
+					</div>
+					<div class="form-group col-md-3">
+						<label for="staticState">State</label> <input type="text"
+							maxlength="2" class="form-control" id="city"
+							value="${user.address.state}">
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<div class="form-check">
+							<c:choose>
+								<c:when test="${user.host}">
+									<input type="checkbox" id="staticHost" value="" checked>
+								</c:when>
+								<c:when test="${!user.host}">
+									<input type="checkbox" id="staticHost" value="">
+								</c:when>
+							</c:choose>
+							<label for="staticHost">Host</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<div class="form-check">
+							<c:choose>
+								<c:when test="${user.travel}">
+									<input type="checkbox" id="staticTravel" value="" checked>
+								</c:when>
+								<c:when test="${!user.travel}">
+									<input type="checkbox" id="staticTravel" value="">
+								</c:when>
+							</c:choose>
+							<label for="staticTravel">Travel</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="staticSkillLevel">Skill Level</label>
+						<c:if test="${! empty skillLevels }">
+							<select class="custom-select" name="skillLevel">
+								<c:forEach var="skillLevel" items="${skillLevels}">
+									<c:choose>
+										<c:when test="${skillLevel.id != user.skillLevel.id }">
+											<option value="${skillLevel.id}">${skillLevel.levelName}</option>
+										</c:when>
+										<c:otherwise>
+											<option value="${skillLevel.id}" selected>${skillLevel.levelName}</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</select>
+						</c:if>
+					</div>
+				</div>
+				<div class="form-row">
+					<ul class="list-group list-group-horizontal">
+						<li><a class="btn btn-outline-primary my-2 my-sm-0"
+							role="button" href="updateProfile.do">Submit Changes</a></li>
+						<li><a class="btn btn-outline-primary my-2 my-sm-0"
+							role="button" href="deleteProfile.do">Delete Profile</a></li>
+					</ul>
+				</div>
+			</form>
+		</c:if>
+	</div>
 </body>
 </html>

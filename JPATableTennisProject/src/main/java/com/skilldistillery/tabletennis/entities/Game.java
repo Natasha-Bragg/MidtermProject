@@ -40,8 +40,11 @@ public class Game {
 	@JoinColumn(name = "address_id")
 	private Address address;
 
+	private Boolean enabled;
+	
 	public Game() {
 		super();
+		this.enabled = true;
 	}
 
 	public int getId() {
@@ -108,11 +111,19 @@ public class Game {
 		this.address = addressId;
 	}
 
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override
 	public String toString() {
-		return "Game [id=" + id + ", dateTime=" + gameTime + ", venue=" + venue + ", result=" + result
-				+ ", playerOneId=" + playerOne + ", playerTwoId=" + playerTwo + ", winnerId=" + winner + ", addressId="
-				+ address + "]";
+		return "Game [id=" + id + ", gameTime=" + gameTime + ", venue=" + venue + ", result=" + result + ", playerOne="
+				+ playerOne + ", playerTwo=" + playerTwo + ", winner=" + winner + ", address=" + address + ", enabled="
+				+ enabled + "]";
 	}
 
 	@Override

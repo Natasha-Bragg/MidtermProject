@@ -76,11 +76,13 @@
 				<c:choose>
 					<c:when test="${! empty users}">
 						<c:forEach var="user" items="${users}">
+						<c:if test="${user.enabled == true }">
 							<tr class="text-center">
 								<td>${user.firstName} ${user.lastName}</td>
 								<td>${user.address.city} (${user.address.state})</td>
 								<td>${user.skillLevel.levelName}</td>
 							</tr>
+							</c:if>
 						</c:forEach>
 					</c:when>
 				</c:choose>

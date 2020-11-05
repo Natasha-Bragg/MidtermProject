@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +21,9 @@ public class SkillLevel {
 	private String levelName;
 	
 	private String description;
+	
+//	@OneToMany(mappedBy = "skillLevel")
+//	private User user;
 
 	public int getId() {
 		return id;
@@ -57,6 +61,14 @@ public class SkillLevel {
 		// TODO Auto-generated constructor stub
 	}
 
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
+
 	@Override
 	public String toString() {
 		return "SkillLevel [id=" + id + ", levelName=" + levelName + ", description=" + description + "]";
@@ -66,9 +78,7 @@ public class SkillLevel {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((levelName == null) ? 0 : levelName.hashCode());
 		return result;
 	}
 
@@ -81,19 +91,10 @@ public class SkillLevel {
 		if (getClass() != obj.getClass())
 			return false;
 		SkillLevel other = (SkillLevel) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
 		if (id != other.id)
-			return false;
-		if (levelName == null) {
-			if (other.levelName != null)
-				return false;
-		} else if (!levelName.equals(other.levelName))
 			return false;
 		return true;
 	}
 
+	
 }

@@ -47,10 +47,10 @@ public class TableTennisController {
 		User loggedInUser = dao.getUserByEmail(user.getEmail());
 		if (loggedInUser == null) {
 			errors.rejectValue("email", "error.email", "Invalid email or password");
-		} else {
-			// TODO: Else if the user is not valid (isValidUser), use the Errors object to
-			// reject
-			// the password with the message "Incorrect password"
+		} else if (loggedInUser.getEnabled() == false) {
+			errors.rejectValue("enabled", "error.enabled", "Account disabled");
+		}
+		else {
 			boolean isValidUser = dao.isValidUser(loggedInUser.getEmail(), loggedInUser.getPassword());
 			if (!isValidUser) {
 				errors.rejectValue("password", "error.password", "Incorrect password");
@@ -66,79 +66,124 @@ public class TableTennisController {
 	}
 
 	@RequestMapping(path = "login.do", method = RequestMethod.GET)
-	public String showLogin(Model model) {
+	public String showLogin(Model model) { 
 		model.addAttribute("user", new User());
 		return "login";
 	}
 
 	@RequestMapping(path = "home.do")
 	public String home(Model model, HttpSession session) {
-		if(session.getAttribute("loginUser") != null) {
+		if (session.getAttribute("loginUser") != null) {
 			List<User> userList = dao.findAll();
-		model.addAttribute("users", userList);
-		return "home";
+			model.addAttribute("users", userList);
+			return "home";
+		} else {
+			return "redirect:landing.do";
 		}
-		else {return "redirect:landing.do";}
-		
+
 	}
 
 	@RequestMapping(path = "deleteProfile.do")
-	public String deleted() {
-		return "deleteProfile";
+	public String deleteUser(HttpSession session, User user) {
+		if (session.getAttribute("loginUser") != null) {
+			User u = (User) session.getAttribute("loginUser");
+			Boolean isUserDeleted = dao.isUserDisabled(u);
+			if (isUserDeleted == true) {
+				return "deleteProfile";
+			} else {
+				return "showYourProfile";
+			}
+		}
+		return "redirect:landing";
+	}
+
+	@RequestMapping(path = "deleteGame.do")
+	public String deleteGame(Game game, HttpSession session) {
+		if (session.getAttribute("loginUser") != null) {
+			Boolean isGameDeleted = dao.isGameDisabled(game);
+			if (isGameDeleted == true) {
+				return "deleteGame";
+			} else {
+				return "updateGame";
+			}
+		}
+		return "redirect:landing";
 	}
 
 	@RequestMapping(path = "showCreateProfileForm.do")
 	public String showCreateProfileForm(Model model) {
-		List <SkillLevel> skillLevels = dao.getSkillLevelList();
+		List<SkillLevel> skillLevels = dao.getSkillLevelList();
 		model.addAttribute("skillLevels", skillLevels);
 		return "createProfile";
 	}
 
 	@RequestMapping(path = "createProfile.do")
-	public String createUserProfile(User user, Model model, Address address, SkillLevel skillLevel) {
-		User newUser = dao.createUser(user, address, skillLevel);
+	public String createUserProfile(User user, Model model, Address address, int skillLevelId) {
+		address.setId(0);
+		User newUser = dao.createUser(user, address, skillLevelId);
 		model.addAttribute("user", newUser);
 		return "login";
 
 	}
 
 	@RequestMapping(path = "viewOtherProfile.do")
-	public String showOtherProfile(int id, Model model) {
-		User user = dao.findById(id);
-		model.addAttribute("user", user);
-		return "viewOtherProfile";
+	public String showOtherProfile(int id, Model model, HttpSession session) {
+		if (session.getAttribute("loginUser") != null) {
+			User user = dao.findById(id);
+			model.addAttribute("user", user);
+			return "viewOtherProfile";
+		}
+		return "redirect:landing";
 	}
+
 	@RequestMapping(path = "viewYourProfile.do")
 	public String showYourProfile(Model model, HttpSession session) {
-		List<SkillLevel> skillLevelList = dao.getSkillLevelList();
+		if (session.getAttribute("loginUser") != null) {
+			List<SkillLevel> skillLevelList = dao.getSkillLevelList();
+			model.addAttribute("user", session.getAttribute("loginUser"));
+			model.addAttribute("skillLevels", skillLevelList);
+			return "viewYourProfile";
+		}
+		return "redirect:landing";
+	}
+	
+	@RequestMapping(path = "showUpdateProfile.do")
+	public String showUpdateProfile(Model model, HttpSession session) {
+		List<SkillLevel> skillLevels = dao.getSkillLevelList();
 		model.addAttribute("user", session.getAttribute("loginUser"));
-		model.addAttribute("skillLevels", skillLevelList);
+		model.addAttribute("skillLevels", skillLevels);
+		return "updateProfile";
+	}
+	
+	@RequestMapping(path = "updateProfile.do")
+	public String updateProfile(Model model, HttpSession session, User user, Address address, int skillLevelId) {
+		User u = dao.updateUser(user, address, skillLevelId);
+		model.addAttribute("user", u);
 		return "viewYourProfile";
 	}
 
 	@RequestMapping(path = "createGame.do", method = RequestMethod.POST)
-	
 	public String createGame(Model model, HttpSession session, Game game, int oppId, Address address) {
-		System.out.println("*******");
-		System.out.println(game);
-		System.out.println("*******");
+		if (session.getAttribute("loginUser") != null) {
 		User challenger = (User) session.getAttribute("loginUser");
 		User challengedUser = dao.findById(oppId);
 		Game g = dao.createGame(challengedUser, challenger, game, address);
-//		session.setAttribute("loginUser", loggedInUser);
 		model.addAttribute("game", g);
 		return "updateGame";
+		}
+		return "redirect:landing";
 	}
 
 	@RequestMapping(path = "createGame.do", method = RequestMethod.GET)
 	public String showCreateGameForm(Model model, int id, HttpSession session) {
-		if(session.getAttribute("loginUser") != null) {
-		model.addAttribute("opponent", dao.findById(id));
-		return "createGame";
+		if (session.getAttribute("loginUser") != null) {
+			model.addAttribute("opponent", dao.findById(id));
+			return "createGame";
+		} else {
+			return "redirect:landing.do";
 		}
-		else {return "redirect:landing.do";}
 	}
-	
+
 	@RequestMapping(path = "logout.do")
 	public String logout(HttpSession session, Model model) {
 		session.removeAttribute("loginUser");

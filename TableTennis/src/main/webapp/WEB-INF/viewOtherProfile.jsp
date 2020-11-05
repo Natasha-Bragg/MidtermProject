@@ -84,10 +84,10 @@
 		<div class="form-check">
 			<c:choose>
 				<c:when test="${user.host}">
-					<input type="checkbox" id="staticHost" value="" checked>
+					<input type="checkbox" readonly id="staticHost" value="" checked >
 				</c:when>
 				<c:when test="${!user.host}">
-					<input type="checkbox" id="staticHost" value="">
+					<input type="checkbox" readonly id="staticHost" value="" >
 				</c:when>
 			</c:choose>
 		<label for="staticHost">Host</label>
@@ -99,10 +99,10 @@
 			<div class="form-check">
 				<c:choose>
 					<c:when test="${user.travel}">
-						<input type="checkbox" id="staticTravel" value="" checked>
+						<input type="checkbox" readonly id="staticTravel" value="" checked>
 					</c:when>
 					<c:when test="${!user.travel}">
-						<input type="checkbox" id="staticTravel" value="">
+						<input type="checkbox" readonly id="staticTravel" value="">
 					</c:when>
 				</c:choose>
 			<label for="staticTravel">Travel</label>
@@ -117,8 +117,10 @@
 			</div>
 		</div>
 	<div class="form-row">
+	<div class="form-group col-md-6">
 			<a class="btn btn-outline-primary my-2 my-sm-0" role="button"
 				href="createGame.do?id=${user.id }">Challenge This Player!</a>
+		</div>
 		</div>
 	</form>
 	</c:if>

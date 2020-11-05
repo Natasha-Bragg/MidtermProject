@@ -64,24 +64,25 @@
 			First Name: <input type="text" name="firstName" value="" /> <br>
 			Last Name: <input type="text" name="lastName" value="" /> <br>
 			Street: <input type="text" name="street" value="" /> <br> City:
-			<input type="text" name="city" value="" /> <br> State: <input
+			<input type="text" name="city" value="" maxlength="2" /> <br> State: <input
 				type="text" name="state" value="" /> <br> Zip Code: <input
 				type="text" name="zip" value="" /> <br> Email: <input
 				type="text" name="email" value="" /> This will be your username <br>
 			Password: <input type="text" name="password" value="" /> <br>
-			Host?: <input type="checkbox" name="host" value="${user.Id}" /><br>
-			Travel?: <input type="checkbox" name="travel" value="" /><br>
+			<input type="hidden" name="host" value="false"/>
+			Host?: <input type="checkbox" name="host" /><br>
+			<input type="hidden" name="travel" value="false"/>
+			Travel?: <input type="checkbox" name="travel" /><br>
 			<label for="skillLevel">Skill Level</label>
 			<c:if test="${! empty skillLevels }">
-				<select class="custom-select" name="skillLevel">
+				<select class="custom-select" name="skillLevelId">
 					<c:forEach var="skillLevel" items="${skillLevels}">
 								<option value="${skillLevel.id}">${skillLevel.levelName}</option>
 					</c:forEach>
 				</select>
 			</c:if>
 
-			<button class="btn btn-outline-primary" type="submit" name="id"
-				value="0">Submit</button>
+			<button class="btn btn-outline-primary" type="submit" name="id" value="0">Submit</button>
 		</form>
 	</div>
 </body>

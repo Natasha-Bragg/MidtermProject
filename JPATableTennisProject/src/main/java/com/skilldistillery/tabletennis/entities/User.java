@@ -50,17 +50,10 @@ public class User {
 	@OneToMany(mappedBy = "userBeingRated")
 	private List<PlayerRating> ratedUsers;
 
-//	@ManyToOne
-//	@JoinColumn(name = "ratingUser")
-//	private List<PlayerRating> ratingsUsers;
-//	
-//	@ManyToOne
-//	@JoinColumn(name = "rated_user_id")
-//	private List<PlayerRating> ratedUsers;
-
 	// constructors
 	public User() {
 		super();
+		this.enabled = true;
 	}
 
 	public User(int id, String email, String password, Boolean enabled, String role, String firstName, String lastName,
@@ -69,7 +62,7 @@ public class User {
 		this.id = id;
 		this.email = email;
 		this.password = password;
-		this.enabled = enabled;
+		this.enabled = true;
 		this.role = role;
 		this.firstName = firstName;
 		this.lastName = lastName;

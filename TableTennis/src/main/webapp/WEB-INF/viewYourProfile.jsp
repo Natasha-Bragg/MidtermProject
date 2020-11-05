@@ -27,129 +27,142 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="navbar-brand mx-auto" href="home.do"><img src="logo.png" width="30" height="30" alt="logo" loading="lazy"></a>
-            </li>
-        </ul>
-    </div>
-    <div class="mx-auto order-0">
-        <a class="navbar-brand mx-auto" href="#"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="btn btn-light my-2 my-sm-0" role="button" href="logout.do">Logout</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<br>
-<div class="container-fluid">
-<h1>Profile</h1>
-<c:if test="${! empty user}">
-<form>
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
+		<div
+			class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="navbar-brand mx-auto"
+					href="home.do"><img src="logo.png" width="30" height="30"
+						alt="logo" loading="lazy"></a></li>
+			</ul>
+		</div>
+		<div class="mx-auto order-0">
+			<a class="navbar-brand mx-auto" href="#"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target=".dual-collapse2">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="btn btn-light my-2 my-sm-0"
+					role="button" href="logout.do">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	<br>
+	<div class="container-fluid">
+		<h1>Profile</h1>
+		<c:if test="${! empty user}">
+			<form>
 				<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="staticEmail">Email</label> <input type="text"
-						class="form-control" id="email"
-						value="${user.email}">
-				</div>
-				</div>
-				<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="staticPassword">Email</label> <input type="text"
-						class="form-control" id="password"
-						value="${user.password}">
-				</div>
-				</div>
-				<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="staticFirstName">First Name</label> <input type="text"
-						class="form-control" id="firstName"
-						value="${user.firstName}">
-				</div>
-				</div>
-					<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="staticLastName">Last Name</label> <input type="text"
-						class="form-control" id="firstName"
-						value="${user.lastName}">
-				</div>
+					<div class="form-group col-md-6">
+						<label for="staticEmail">Email</label> <input type="text"
+							class="form-control" id="email" value="${user.email}" readonly>
 					</div>
-					<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="staticStree">Street</label> <input type="text"
-						class="form-control" id="street"
-						value="${user.address.street}">
 				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="staticPassword">Password</label> <input type="text"
+							class="form-control" id="password" value="${user.password}"
+							readonly>
 					</div>
-	<div class="form-row">
-		<div class="form-group col-md-3">
-			<label for="staticCity">City</label> <input type="text"
-				class="form-control" id="city" value="${user.address.city}">
-		</div>
-	<div class="form-group col-md-3">
-		<label for="staticState">State</label> <input type="text" 
-			class="form-control" id="city" value="${user.address.state}">
-	</div>
-	</div>
-		<div class="form-row">
-	<div class="form-group col-md-6">
-		<div class="form-check">
-			<c:choose>
-				<c:when test="${user.host}">
-					<input type="checkbox" id="staticHost" value="" checked>
-				</c:when>
-				<c:when test="${!user.host}">
-					<input type="checkbox" id="staticHost" value="">
-				</c:when>
-			</c:choose>
-		<label for="staticHost">Host</label>
-		</div>
-	</div>
-	</div>
-	<div class="form-row">
-		<div class="form-group col-md-6">
-			<div class="form-check">
-				<c:choose>
-					<c:when test="${user.travel}">
-						<input type="checkbox" id="staticTravel" value="" checked>
-					</c:when>
-					<c:when test="${!user.travel}">
-						<input type="checkbox" id="staticTravel" value="">
-					</c:when>
-				</c:choose>
-			<label for="staticTravel">Travel</label>
-			</div>
-		</div>
-	</div>
-	<div class="form-row">
-		<div class="form-group col-md-6">
-			<label for="staticSkillLevel">Skill Level</label>
-			<c:if test="${! empty skillLevels }">
-			<select class="custom-select" name="skillLevel">
-			<c:forEach var="skillLevel" items="${skillLevels}">
-			<c:choose>
-				<c:when test="${skillLevel.id != user.skillLevel.id }">
-				<option value="${skillLevel.id}">${skillLevel.levelName}</option>
-				</c:when>
-				<c:otherwise>
-				<option value="${skillLevel.id}" selected>${skillLevel.levelName}</option>
-				</c:otherwise>
-			</c:choose>
-			</c:forEach>
-			</select>
-			</c:if>
-			</div>
-		</div>
-	</form>
-	</c:if>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="staticFirstName">First Name</label> <input type="text"
+							class="form-control" id="firstName" value="${user.firstName}"
+							readonly>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="staticLastName">Last Name</label> <input type="text"
+							class="form-control" id="lastName" value="${user.lastName}"
+							readonly>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="staticStree">Street</label> <input type="text"
+							class="form-control" id="street" value="${user.address.street}"
+							readonly>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-3">
+						<label for="staticCity">City</label> <input type="text"
+							class="form-control" id="city" value="${user.address.city}"
+							readonly>
+					</div>
+					<div class="form-group col-md-3">
+						<label for="staticState">State</label> <input type="text"
+							maxlength="2" class="form-control" id="city"
+							value="${user.address.state}" readonly>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<div class="form-check">
+							<c:choose>
+								<c:when test="${user.host}">
+									<input type="checkbox" id="staticHost" value="" checked
+										readonly>
+								</c:when>
+								<c:when test="${!user.host}">
+									<input type="checkbox" id="staticHost" value="" readonly>
+								</c:when>
+							</c:choose>
+							<label for="staticHost">Host</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<div class="form-check">
+							<c:choose>
+								<c:when test="${user.travel}">
+									<input type="checkbox" id="staticTravel" value="" checked
+										readonly>
+								</c:when>
+								<c:when test="${!user.travel}">
+									<input type="checkbox" id="staticTravel" value="" readonly>
+								</c:when>
+							</c:choose>
+							<label for="staticTravel">Travel</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="staticSkillLevel">Skill Level</label>
+						<c:if test="${! empty skillLevels }">
+							<select class="custom-select" name="skillLevel"
+								disabled="disabled">
+								<c:forEach var="skillLevel" items="${skillLevels}">
+									<c:choose>
+										<c:when test="${skillLevel.id != user.skillLevel.id }">
+											<option value="${skillLevel.id}">${skillLevel.levelName}</option>
+										</c:when>
+										<c:otherwise>
+											<option value="${skillLevel.id}" selected>${skillLevel.levelName}</option>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</select>
+						</c:if>
+					</div>
+				</div>
+				<div class="form-row">
+					<ul class="list-group list-group-horizontal">
+						<li><a class="btn btn-outline-primary my-2 my-sm-0"
+							role="button" href="showUpdateProfile.do">Update Profile</a></li>
+						<li><a class="btn btn-outline-primary my-2 my-sm-0"
+							role="button" href="deleteProfile.do">Delete Profile</a></li>
+					</ul>
+				</div>
+			</form>
+		</c:if>
 	</div>
 </body>
 </html>

@@ -64,6 +64,9 @@
   <form:input path="password" />
   <form:errors path="password" />
   <br />
+  <form:label path="enabled"></form:label>
+  <form:errors path="enabled" />
+  <br />
   <input type="submit" value="Login" />
 </form:form>
 

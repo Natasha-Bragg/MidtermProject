@@ -78,7 +78,7 @@
 				<c:choose>
 					<c:when test="${! empty users}">
 						<c:forEach var="user" items="${users}">
-						<c:if test="${user != sessionScope.loginUser}">
+						<c:if test="${user != sessionScope.loginUser && user.enabled == true}">
 							<tr class="text-center">
 								<td><a href = "viewOtherProfile.do?id=${user.id}">${user.firstName} ${user.lastName}</a></td>
 								<td>${user.address.city} (${user.address.state})</td>
