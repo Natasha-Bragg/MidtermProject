@@ -83,7 +83,7 @@ public class TableTennisController {
 
 	}
 
-	@RequestMapping(path = "deleteProfile.do")
+	@RequestMapping(path = "deleteProfile.do", params="delete")
 	public String deleteUser(HttpSession session, User user) {
 		if (session.getAttribute("loginUser") != null) {
 			User u = (User) session.getAttribute("loginUser");
@@ -155,9 +155,10 @@ public class TableTennisController {
 		return "updateProfile";
 	}
 	
-	@RequestMapping(path = "updateProfile.do")
+	@RequestMapping(path = "updateProfile.do", params="update")
 	public String updateProfile(Model model, HttpSession session, User user) {
 		User u = dao.updateUser(user);
+		
 		session.setAttribute("loginUser", u);
 		model.addAttribute("user", u);
 		return "viewYourProfile";

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,51 +55,53 @@
 	<div class="container-fluid">
 		<h1>Profile</h1>
 		<c:if test="${! empty user}">
-			<form>
-				<div class="form-row">
+			<form:form action="updateProfile.do" modelAttribute="user">
+			<%-- 	<input type="hidden" name="id" value="${user.id}" />
+				<input type="hidden" name="address.id" value="${user.address.id}" />
+				 --%><div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="staticEmail">Email</label> <input type="text"
-							class="form-control" id="email" value="${user.email}" readonly>
+							class="form-control" id="email" value="${user.email}" name="email" readonly="readonly">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="staticPassword">Password</label> <input type="text"
-							class="form-control" id="password" value="${user.password}"
-							readonly>
+							class="form-control" id="password" value="${user.password}" name="password"
+							readonly="readonly">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="staticFirstName">First Name</label> <input type="text"
-							class="form-control" id="firstName" value="${user.firstName}"
-							readonly>
+							class="form-control" id="firstName" value="${user.firstName}" name="firstName"
+							readonly="readonly">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="staticLastName">Last Name</label> <input type="text"
-							class="form-control" id="lastName" value="${user.lastName}"
-							readonly>
+							class="form-control" id="lastName" value="${user.lastName}" name="lastName"
+							readonly="readonly">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="staticStree">Street</label> <input type="text"
-							class="form-control" id="street" value="${user.address.street}"
-							readonly>
+							class="form-control" id="street" value="${user.address.street}" name="address.street"
+							readonly="readonly">
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-3">
 						<label for="staticCity">City</label> <input type="text"
-							class="form-control" id="city" value="${user.address.city}"
-							readonly>
+							class="form-control" id="city" value="${user.address.city}" name="user.address.city"
+							readonly="readonly">
 					</div>
 					<div class="form-group col-md-3">
 						<label for="staticState">State</label> <input type="text"
-							maxlength="2" class="form-control" id="city"
-							value="${user.address.state}" readonly>
+							maxlength="2" class="form-control" id="state"
+							value="${user.address.state}" name="address.state" readonly="readonly">
 					</div>
 				</div>
 				<div class="form-row">
@@ -107,11 +109,12 @@
 						<div class="form-check">
 							<c:choose>
 								<c:when test="${user.host}">
-									<input type="checkbox" id="staticHost" value="" checked
-										readonly>
+								<form:hidden path="host" value="false"/>
+									<form:checkbox id="staticHost" value="true" path="host" checked="checked"
+										readonly="true"/>
 								</c:when>
 								<c:when test="${!user.host}">
-									<input type="checkbox" id="staticHost" value="" readonly>
+									<form:checkbox id="staticHost" value="true" path="host" readonly="true"/>
 								</c:when>
 							</c:choose>
 							<label for="staticHost">Host</label>
@@ -123,11 +126,12 @@
 						<div class="form-check">
 							<c:choose>
 								<c:when test="${user.travel}">
-									<input type="checkbox" id="staticTravel" value="" checked
-										readonly>
+								<form:hidden path="travel" value="false"/>
+									<form:checkbox id="staticTravel" value="true" path="travel" checked="checked"
+										disabled="true"/>
 								</c:when>
 								<c:when test="${!user.travel}">
-									<input type="checkbox" id="staticTravel" value="" readonly>
+									<form:checkbox id="staticTravel" value="true" path="travel" disabled="true"/>
 								</c:when>
 							</c:choose>
 							<label for="staticTravel">Travel</label>
@@ -136,31 +140,33 @@
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="staticSkillLevel">Skill Level</label>
+						<label for="skillLevel">Skill Level</label>
+		<%-- 				<form:input path="skillLevel.id" class="form-control"/> --%>
 						<c:if test="${! empty skillLevels }">
-							<form:select class="custom-select" path="skillLevel.id">
-								<form:options items="${skillLevels}" itemValue="id" itemLabel="levelName"/>
-									 <c:choose>
-										<c:when test="${skillLevel.id != user.skillLevel.id }">
-											<form:option value="${skillLevel.id}">${skillLevel.levelName}</form:option>
-										</c:when>
-										<c:otherwise>
-											<form:option value="${skillLevel.id}" selected="true" >${skillLevel.levelName}</form:option>
-										</c:otherwise>
-									</c:choose>
+							<form:select class="custom-select" path="skillLevel.id"  disabled="true">
+								<form:options items="${skillLevels}" itemValue="id"
+									itemLabel="levelName"/>
+								<c:choose>
+									<c:when test="${skillLevel.id != user.skillLevel.id }">
+										<form:option value="${skillLevel.id}">${skillLevel.levelName}</form:option>
+									</c:when>
+									<c:otherwise>
+										<form:option value="${skillLevel.id}" selected="true">${skillLevel.levelName}</form:option>
+									</c:otherwise>
+								</c:choose>
 							</form:select>
 						</c:if>
 					</div>
 				</div>
-				<div class="form-row">
-					<ul class="list-group list-group-horizontal">
-						<li><a class="btn btn-outline-primary my-2 my-sm-0"
-							role="button" href="showUpdateProfile.do">Update Profile</a></li>
-						<li><a class="btn btn-outline-primary my-2 my-sm-0"
-							role="button" href="deleteProfile.do">Delete Profile</a></li>
-					</ul>
+				<div class="row">
+					<div class="col">
+						<a class="btn btn-outline-primary my-2 my-sm-0" role="button"
+							href="showUpdateProfile.do">Update Profile</a>
+						<a class="btn btn-outline-primary my-2 my-sm-0" role="button"
+							href="deleteProfile.do">Delete Profile</a>
+					</div>
 				</div>
-			</form>
+			</form:form>
 		</c:if>
 	</div>
 </body>
