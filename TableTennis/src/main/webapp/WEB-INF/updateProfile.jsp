@@ -145,7 +145,6 @@
 											<form:option value="${skillLevel.id}" selected="true" >${skillLevel.levelName}</form:option>
 										</c:otherwise>
 									</c:choose>
-								<%-- </form:options> --%>
 							</form:select>
 					</c:if>
 					</div>

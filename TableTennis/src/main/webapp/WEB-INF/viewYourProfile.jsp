@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -137,19 +138,17 @@
 					<div class="form-group col-md-6">
 						<label for="staticSkillLevel">Skill Level</label>
 						<c:if test="${! empty skillLevels }">
-							<select class="custom-select" name="skillLevel"
-								disabled="disabled">
-								<c:forEach var="skillLevel" items="${skillLevels}">
-									<c:choose>
+							<form:select class="custom-select" path="skillLevel.id">
+								<form:options items="${skillLevels}" itemValue="id" itemLabel="levelName"/>
+									 <c:choose>
 										<c:when test="${skillLevel.id != user.skillLevel.id }">
-											<option value="${skillLevel.id}">${skillLevel.levelName}</option>
+											<form:option value="${skillLevel.id}">${skillLevel.levelName}</form:option>
 										</c:when>
 										<c:otherwise>
-											<option value="${skillLevel.id}" selected>${skillLevel.levelName}</option>
+											<form:option value="${skillLevel.id}" selected="true" >${skillLevel.levelName}</form:option>
 										</c:otherwise>
 									</c:choose>
-								</c:forEach>
-							</select>
+							</form:select>
 						</c:if>
 					</div>
 				</div>
