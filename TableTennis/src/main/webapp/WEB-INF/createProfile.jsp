@@ -64,8 +64,8 @@
 			First Name: <input type="text" name="firstName" value="" /> <br>
 			Last Name: <input type="text" name="lastName" value="" /> <br>
 			Street: <input type="text" name="street" value="" /> <br> City:
-			<input type="text" name="city" value="" maxlength="2" /> <br> State: <input
-				type="text" name="state" value="" /> <br> Zip Code: <input
+			<input type="text" name="city" value="" /> <br> State: <input
+				type="text" name="state" value="" maxlength="2" /> <br> Zip Code: <input
 				type="text" name="zip" value="" /> <br> Email: <input
 				type="text" name="email" value="" /> This will be your username <br>
 			Password: <input type="text" name="password" value="" /> <br>

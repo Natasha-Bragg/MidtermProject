@@ -119,15 +119,20 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 	}
 
 	@Override
-	public User updateUser(User user, Address address, int skillLevelId) {
+	public User updateUser(User user) {
+		System.out.println("***********");
+		System.out.println(user);
+		System.out.println("***********");
 		User updateUser = em.find(User.class, user.getId());
 		updateUser.setEmail(user.getEmail());
+		updateUser.setPassword(user.getPassword());
 		updateUser.setFirstName(user.getFirstName());
 		updateUser.setLastName(user.getLastName());
 		updateUser.setHost(user.getHost());
 		updateUser.setTravel(user.getTravel());
-		user.setAddress(em.find(Address.class, address.getId()));
-		updateUser.setSkillLevel(em.find(SkillLevel.class, skillLevelId));
+		updateUser.setAddress(em.find(Address.class, user.getAddress().getId()));
+		updateUser.setSkillLevel(em.find(SkillLevel.class, user.getSkillLevel().getId()));
+		em.persist(updateUser);
 		return user;
 	}
 

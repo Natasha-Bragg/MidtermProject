@@ -12,7 +12,7 @@ public interface TableTennisDAO {
 	User findById(int id);
 	List<User> findAll();
 	User createUser(User user, Address address, int skillLevelId);
-	User updateUser(User user, Address address, int skillLevelId);
+	User updateUser(User user);
 	boolean isEmailUnique(String email);
 	User getUserByEmail(String email);
 	boolean isValidUser(String email, String password);

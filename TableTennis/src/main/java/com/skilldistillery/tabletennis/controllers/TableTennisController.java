@@ -156,8 +156,9 @@ public class TableTennisController {
 	}
 	
 	@RequestMapping(path = "updateProfile.do")
-	public String updateProfile(Model model, HttpSession session, User user, Address address, int skillLevelId) {
-		User u = dao.updateUser(user, address, skillLevelId);
+	public String updateProfile(Model model, HttpSession session, User user) {
+		User u = dao.updateUser(user);
+		session.setAttribute("loginUser", u);
 		model.addAttribute("user", u);
 		return "viewYourProfile";
 	}
