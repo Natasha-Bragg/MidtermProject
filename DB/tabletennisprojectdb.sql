@@ -268,7 +268,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `tabletennisprojectdb`;
-INSERT INTO `skill_level` (`id`, `level_name`, `description`, `enabled`) VALUES (1, 'Advanced', 'I am awesome at table tennis ', DEFAULT);
+INSERT INTO `skill_level` (`id`, `level_name`, `description`, `enabled`) VALUES (1, 'Beginner', 'Just started playing', 1);
+INSERT INTO `skill_level` (`id`, `level_name`, `description`, `enabled`) VALUES (2, 'Intermediate', 'Pretty decent', 1);
+INSERT INTO `skill_level` (`id`, `level_name`, `description`, `enabled`) VALUES (3, 'Advanced', 'Really good', 1);
+INSERT INTO `skill_level` (`id`, `level_name`, `description`, `enabled`) VALUES (4, 'Pro', 'I get paid for this', 1);
+INSERT INTO `skill_level` (`id`, `level_name`, `description`, `enabled`) VALUES (5, 'Forrest Gump', 'I will break you', 1);
 
 COMMIT;
 
