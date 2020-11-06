@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,72 +59,75 @@
 	</nav>
 	<br>
 	<div class="container-fluid">
-		<form:form action="deleteGame.do" modelAttribute="game">
-		<input type="hidden" name="id" value="${game.id}"/>
-			<div class="form-group row">
-				<label for="staticPlayerOne" class="col-sm-2 col-form-label">Player
-					One</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control-plaintext"
-					id="playerOne" value="${game.playerOne}" readonly>
-			</div>
-			</div>
-			<div class="form-group row">
-				<label for="staticPlayerTwo" class="col-sm-2 col-form-label">Player
-					Two</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control-plaintext"
-					id="playerTwo" value="${game.playerTwo}" readonly>
-			</div>
-			</div>
-			<div class="form-group row">
-				<label for="staticStreet" class="col-sm-2 col-form-label">Street</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control-plaintext"
-					id="street" value="${user.address.street}"  readonly>
-			</div>
-			</div>
-			<div class="form-group row">
-				<label for="staticStreet" class="col-sm-2 col-form-label">Venue</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control-plaintext"
-					id="street" value="${game.venue}"  readonly >
-			</div>
-			</div>
-			<div class="form-group row">
-				<div class="col">
-					<label for="staticCity" class="col-sm-2 col-form-label">City</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control-plaintext"
-						id="city" value="${user.address.city}"  readonly >
-				</div>
-				</div>
-				<div class="col">
-					<label for="staticState" class="col-sm-2 col-form-label">State</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control-plaintext"
-						id="city" value="${user.address.state}"  readonly>
-				</div>
+		<form:form action="updateGame.do" modelAttribute="game">
+			<input type="hidden" name="id" value="${game.id}" />
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="staticPlayerOne">Player One</label> <input type="text"
+						class="form-control" id="playerOne"
+						value="${game.playerOne.firstName} ${game.playerOne.lastName}"
+						name="game.playerOne" readonly>
 				</div>
 			</div>
-			<div class="form-group row">
-				<label for="staticDate" class="col-sm-2 col-form-label">Date</label>
-			<div class="col-sm-10">
-				<input type="text"class="form-control-plaintext"
-					id="staticEmail" value="${game.gameTime}"  readonly >
-			</div>
-			</div>
-			<div class="row">
-				<div class="col"></div>
-				<div class="col">
-					<a class="btn btn-light my-2 my-sm-0" role="button" href="home.do">Cancel</a>
-				</div>
-				<div class="col">
-					<input class="btn btn-light my-2 my-sm-0" type="submit" value="Delete Game"/>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="staticPlayerTwo">Player Two</label> <input type="text"
+						class="form-control" id="playerTwo"
+						value="${game.playerTwo.firstName} ${game.playerOne.lastName}"
+						name="game.playerTwo" readonly>
 				</div>
 			</div>
-		</form:form>
-		<br>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="staticStreet">Venue</label> <input type="text"
+						class="form-control" id="street" value="${game.venue}"
+						name="venue" readonly>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="staticStreet">Street</label> <input type="text"
+						class="form-control" id="street" value="${user.address.street}"
+						name="address.street" readonly>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-3">
+					<label for="staticCity">City</label> <input type="text"
+						class="form-control" id="city" value="${user.address.city}"
+						name="address.city" readonly>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="staticState">State</label> <input type="text"
+						id="state" maxlength="2" class="form-control"
+						value="${user.address.state}" name="address.state" readonly>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="staticDate">Date</label> <input type="text"
+						class="form-control" id="staticEmail" value="${game.gameTime}"
+						name="gameTime" readonly>
+				</div>
+			</div>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label for="result">Result</label> <input type="text"
+				class="form-control" id="result" value="${game.result}"
+				name="result">
+		</div>
 	</div>
+	<div class="row">
+		<div class="col">
+			<a class="btn btn-outline-primary my-2 my-sm-0" role="button" 
+			href="home.do">Cancel</a> 
+			<input class="btn btn-outline-primary my-2 my-sm-0" type="submit"
+				value="Update Game" /> 
+			<a class="btn btn-outline-primary my-2 my-sm-0" role="button"
+				href="deleteGame.do">Delete Game</a>
+		</div>
+	</div>
+	</form:form>
+	<br>
 </body>
 </html>

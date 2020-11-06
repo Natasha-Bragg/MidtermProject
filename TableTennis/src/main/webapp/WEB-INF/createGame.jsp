@@ -61,8 +61,8 @@
 				<input type="hidden" name="oppId" value="${opponent.id}">
 				<%-- Player One: <br> <input type="text" readonly name="playerOne" id="${opponent}" placeholder="${opponent.firstName} ${opponent.lastName}"/> <br>
 			Player Two: <br> <input type="text" readonly name="playerTwo" id="${sessionScope.loginUser}" placeholder="${sessionScope.loginUser.firstName} ${sessionScope.loginUser.lastName}"/> <br> --%>
-				<label>Opponent: ${opponent.firstName} ${opponent.lastName}</label><br>
-				 <label>Challenger: ${sessionScope.loginUser.firstName} ${sessionScope.loginUser.lastName}</label><br>
+				<label><strong>Opponent: ${opponent.firstName} ${opponent.lastName}</strong></label><br>
+				 <label><strong>Challenger: ${sessionScope.loginUser.firstName} ${sessionScope.loginUser.lastName}</strong></label><br>
 				 Venue: <br> <input type="text" name="venue" value=""/> <br>
 				 Street: <br> <input type="text" name="street" value=""/> <br> 
 				 City: <br> <input type="text" name="city" value=""/> <br> 

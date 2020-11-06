@@ -174,6 +174,17 @@ public class TableTennisController {
 		}
 	}
 
+	@RequestMapping(path = "updateGame.do")
+	public String updateProfile(Model model, HttpSession session, Game game) {
+		if(session.getAttribute("loginUser") != null) {
+		Game g = dao.updateGame(game);
+		
+		model.addAttribute("user", session.getAttribute("loginUser"));
+		return "viewYourProfile";
+		}
+		return null;
+	}
+	
 	@RequestMapping(path = "deleteGame.do")
 	public String deleteGame(Game game, HttpSession session) {
 		if (session.getAttribute("loginUser") != null) {

@@ -143,6 +143,17 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 		return updateUser;
 	}
 
+	@Override
+	public Game updateGame(Game game) {
+		Game gameToUpdate = em.find(Game.class, game.getId());
+//		User winningUser = em.find(User.class, game.getWinner().getId());
+		gameToUpdate.setResult(game.getResult());
+//		gameToUpdate.setWinner(winningUser);
+		return gameToUpdate;
+	}
+	
+	
+
 
 
 }

@@ -17,6 +17,7 @@ public interface TableTennisDAO {
 	User getUserByEmail(String email);
 	boolean isValidUser(String email, String password);
 	Game createGame(User challengedUser, User challenger, Game game, Address address);
+	Game updateGame(Game game);
 	List<SkillLevel> getSkillLevelList();
 	boolean isGameDisabled(Game game);
 	boolean isUserDisabled(User user);

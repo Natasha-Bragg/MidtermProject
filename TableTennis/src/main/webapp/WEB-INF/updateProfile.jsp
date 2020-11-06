@@ -88,7 +88,7 @@
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="staticStree">Street</label> <input type="text"
+						<label for="staticStreet">Street</label> <input type="text"
 							class="form-control" id="street" value="${user.address.street}"
 							name="address.street">
 					</div>
