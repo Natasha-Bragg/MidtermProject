@@ -104,8 +104,15 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 
 	@Override
 	public boolean isGameDisabled(Game game) {
-		game.setEnabled(false);
-		return true;
+		System.out.println("**********Disable Game");
+		System.out.println(game);
+		System.out.println("**********Disable Game");
+		Game gameToUpdate = em.find(Game.class, game.getId());
+		gameToUpdate.setEnabled(false);
+		if(gameToUpdate.getEnabled() == false) {
+			return true;
+		}
+		else {return true;}
 	}
 
 	@Override
@@ -135,5 +142,7 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 		updateUser.setSkillLevel(em.find(SkillLevel.class, user.getSkillLevel().getId()));
 		return updateUser;
 	}
+
+
 
 }

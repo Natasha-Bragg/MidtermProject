@@ -66,7 +66,7 @@
 				 Venue: <br> <input type="text" name="venue" value=""/> <br>
 				 Street: <br> <input type="text" name="street" value=""/> <br> 
 				 City: <br> <input type="text" name="city" value=""/> <br> 
-				 State: <br> <input type="text" name="state" value="" /> <br>
+				 State: <br> <input type="text" name="state" value="" maxlength="2" /> <br>
 				<fmt:parseDate value="${game.gameTime}" type="date"
 					pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" />
 				<fmt:formatDate type="both" value="${parsedDate}" />

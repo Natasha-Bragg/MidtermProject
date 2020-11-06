@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,58 +59,59 @@
 	</nav>
 	<br>
 	<div class="container-fluid">
-		<form>
+		<form:form action="deleteGame.do" modelAttribute="game">
+		<input type="hidden" name="id" value="${game.id}"/>
 			<div class="form-group row">
 				<label for="staticPlayerOne" class="col-sm-2 col-form-label">Player
 					One</label>
 			<div class="col-sm-10">
-				<input type="text" readonly class="form-control-plaintext"
-					id="playerOne" value="${game.playerOne}">
+				<input type="text" class="form-control-plaintext"
+					id="playerOne" value="${game.playerOne}" readonly>
 			</div>
 			</div>
 			<div class="form-group row">
 				<label for="staticPlayerTwo" class="col-sm-2 col-form-label">Player
 					Two</label>
 			<div class="col-sm-10">
-				<input type="text" readonly class="form-control-plaintext"
-					id="playerTwo" value="${game.playerTwo}">
+				<input type="text" class="form-control-plaintext"
+					id="playerTwo" value="${game.playerTwo}" readonly>
 			</div>
 			</div>
 			<div class="form-group row">
 				<label for="staticStreet" class="col-sm-2 col-form-label">Street</label>
 			<div class="col-sm-10">
-				<input type="text" readonly class="form-control-plaintext"
-					id="street" value="${user.address.street}">
+				<input type="text" class="form-control-plaintext"
+					id="street" value="${user.address.street}"  readonly>
 			</div>
 			</div>
 			<div class="form-group row">
 				<label for="staticStreet" class="col-sm-2 col-form-label">Venue</label>
 			<div class="col-sm-10">
-				<input type="text" readonly class="form-control-plaintext"
-					id="street" value="${game.venue}">
+				<input type="text" class="form-control-plaintext"
+					id="street" value="${game.venue}"  readonly >
 			</div>
 			</div>
 			<div class="form-group row">
 				<div class="col">
 					<label for="staticCity" class="col-sm-2 col-form-label">City</label>
 				<div class="col-sm-10">
-					<input type="text" readonly class="form-control-plaintext"
-						id="city" value="${user.address.city}">
+					<input type="text" class="form-control-plaintext"
+						id="city" value="${user.address.city}"  readonly >
 				</div>
 				</div>
 				<div class="col">
 					<label for="staticState" class="col-sm-2 col-form-label">State</label>
 				<div class="col-sm-10">
-					<input type="text" readonly class="form-control-plaintext"
-						id="city" value="${user.address.state}">
+					<input type="text" class="form-control-plaintext"
+						id="city" value="${user.address.state}"  readonly>
 				</div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="staticDate" class="col-sm-2 col-form-label">Date</label>
 			<div class="col-sm-10">
-				<input type="text" readonly class="form-control-plaintext"
-					id="staticEmail" value="${game.gameTime}">
+				<input type="text"class="form-control-plaintext"
+					id="staticEmail" value="${game.gameTime}"  readonly >
 			</div>
 			</div>
 			<div class="row">
@@ -118,11 +120,10 @@
 					<a class="btn btn-light my-2 my-sm-0" role="button" href="home.do">Cancel</a>
 				</div>
 				<div class="col">
-					<a class="btn btn-light my-2 my-sm-0" role="button"
-						href="deleteGame.do?${game.id}">Delete Game</a>
+					<input class="btn btn-light my-2 my-sm-0" type="submit" value="Delete Game"/>
 				</div>
 			</div>
-		</form>
+		</form:form>
 		<br>
 	</div>
 </body>
