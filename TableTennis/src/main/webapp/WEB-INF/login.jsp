@@ -56,31 +56,19 @@
 	<h2>Login</h2>
 	
 	<form:form action="login.do" method="POST" modelAttribute="user">
+	<input type="hidden" name="id" value="${user.id}"/>
   <form:label path="email">Email:</form:label>
-  <form:input path="email" />
-  <form:errors path="email" />
+  <form:input type="email" path="email" />
+  <form:errors path="email" style="color:red"/>
   <br />
   <form:label path="password">Password:</form:label>
-  <form:input path="password" />
-  <form:errors path="password" />
+  <form:input type="password" path="password"/>
+  <form:errors path="password"  style="color:red" />
   <br />
   <form:label path="enabled"></form:label>
-  <form:errors path="enabled" />
+  <form:errors path="enabled" style="color:red" />
   <br />
   <input type="submit" value="Login" />
 </form:form>
-
-<!-- 	<form>
-		<div class="container">
-			<label>E-mail : </label> <input type="text"
-				placeholder="Enter E-mail" name="username" required> <br>
-			<label>Password : </label> <input type="password"
-				placeholder="Enter Password" name="password" required> <br>
-			<a class="btn btn-light my-2 my-sm-0" role="button" href="login.do">Login</a>
-			<br> <input type="checkbox" checked="checked"> Remember
-			me <a class="btn btn-light my-2 my-sm-0" role="button"
-				href="landing.do">Cancel</a> Forgot <a href="#"> password? </a>
-		</div>
-	</form> -->
 </body>
 </html>

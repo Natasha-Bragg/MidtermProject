@@ -112,7 +112,7 @@
 			</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">
-			<label for="result">Result</label> <input type="text"
+			<label for="result">Result/Winner</label> <input type="text"
 				class="form-control" id="result" value="${game.result}"
 				name="result">
 		</div>

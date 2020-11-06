@@ -59,8 +59,6 @@
 		<c:if test="${! empty opponent}">
 			<form action="createGame.do" method="POST">
 				<input type="hidden" name="oppId" value="${opponent.id}">
-				<%-- Player One: <br> <input type="text" readonly name="playerOne" id="${opponent}" placeholder="${opponent.firstName} ${opponent.lastName}"/> <br>
-			Player Two: <br> <input type="text" readonly name="playerTwo" id="${sessionScope.loginUser}" placeholder="${sessionScope.loginUser.firstName} ${sessionScope.loginUser.lastName}"/> <br> --%>
 				<label><strong>Opponent: ${opponent.firstName} ${opponent.lastName}</strong></label><br>
 				 <label><strong>Challenger: ${sessionScope.loginUser.firstName} ${sessionScope.loginUser.lastName}</strong></label><br>
 				 Venue: <br> <input type="text" name="venue" value=""/> <br>
@@ -71,8 +69,6 @@
 					pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate" />
 				<fmt:formatDate type="both" value="${parsedDate}" />
 				Date: <br> <input type="datetime-local" name="gameTime" value="${game.gameTime}"/> 
-<!-- 				Date: <br> <input type="datetime-local" name="dateTime" /> <br>
- -->				<!-- Time: <br> <input type="text" name="time" /> -->
 				<br> <br>
 				<button class="btn btn-outline-primary" type="submit" name="id"
 					value="0">Submit</button>

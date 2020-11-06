@@ -180,7 +180,7 @@ public class TableTennisController {
 		Game g = dao.updateGame(game);
 		
 		model.addAttribute("user", session.getAttribute("loginUser"));
-		return "viewYourProfile";
+		return "redirect:viewYourProfile.do";
 		}
 		return null;
 	}

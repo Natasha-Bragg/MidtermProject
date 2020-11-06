@@ -72,7 +72,13 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 	@Override
 	public boolean isValidUser(String email, String password) {
 		User user = getUserByEmail(email);
-		if (getUserByEmail(email) == null) {
+		System.out.println("******isValidUser");
+		System.out.println(email);
+		System.out.println(password);
+		System.out.println(user.getPassword());
+		System.out.println("******isValidUser");
+		
+		if (user == null) {
 			return false;
 		}
 		if (user.getPassword().equals(password)) {
