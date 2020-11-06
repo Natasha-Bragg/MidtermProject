@@ -33,19 +33,6 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 		return userList;
 	}
 
-	@Override
-	public User createUser(User user, Address address, int skillLevelId) {
-		if (isEmailUnique(user.getEmail())) {
-			user.setSkillLevel(em.find(SkillLevel.class, skillLevelId));
-			em.persist(address);
-			user.setAddress(em.find(Address.class, address.getId()));
-			em.persist(user);
-			em.flush();
-			return user;
-		}
-		return null;
-	}
-
 	public boolean isEmailUnique(String email) {
 		String jpql = "SELECT u.email FROM User u WHERE email = :x";
 		List<String> emailString = em.createQuery(jpql, String.class).setParameter("x", email).getResultList();
@@ -72,12 +59,6 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 	@Override
 	public boolean isValidUser(String email, String password) {
 		User user = getUserByEmail(email);
-		System.out.println("******isValidUser");
-		System.out.println(email);
-		System.out.println(password);
-		System.out.println(user.getPassword());
-		System.out.println("******isValidUser");
-		
 		if (user == null) {
 			return false;
 		}
@@ -88,37 +69,10 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 	}
 
 	@Override
-	public Game createGame(User challengedUser, User challenger, Game game, Address address) {
-		game.setAddress(address);
-		game.setPlayerOne(challengedUser);
-		game.setPlayerTwo(challenger);
-		
-
-		em.persist(address);
-		em.persist(game);
-		em.flush();
-
-		return game;
-	}
-
-	@Override
 	public List<SkillLevel> getSkillLevelList() {
 		String q = "SELECT s FROM SkillLevel s";
 		List<SkillLevel> skillLevels = em.createQuery(q, SkillLevel.class).getResultList();
 		return skillLevels;
-	}
-
-	@Override
-	public boolean isGameDisabled(Game game) {
-		System.out.println("**********Disable Game");
-		System.out.println(game);
-		System.out.println("**********Disable Game");
-		Game gameToUpdate = em.find(Game.class, game.getId());
-		gameToUpdate.setEnabled(false);
-		if(gameToUpdate.getEnabled() == false) {
-			return true;
-		}
-		else {return true;}
 	}
 
 	@Override
@@ -131,6 +85,19 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 		else {return false;}
 	}
 
+	@Override
+	public User createUser(User user, Address address, int skillLevelId) {
+		if (isEmailUnique(user.getEmail())) {
+			user.setSkillLevel(em.find(SkillLevel.class, skillLevelId));
+			em.persist(address);
+			user.setAddress(em.find(Address.class, address.getId()));
+			em.persist(user);
+			em.flush();
+			return user;
+		}
+		return null;
+	}
+	
 	@Override
 	public User updateUser(User user) {
 		User updateUser = em.find(User.class, user.getId());
@@ -150,6 +117,23 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 	}
 
 	@Override
+	public Game createGame(User challengedUser, User challenger, Game game, Address address) {
+	System.out.println("************In DAO create game");
+	System.out.println(address);
+		em.persist(address);
+		game.setAddress(address);
+		System.out.println("************In DAO game address");
+	System.out.println(game.getAddress());
+		game.setPlayerOne(challengedUser);
+		game.setPlayerTwo(challenger);
+		em.persist(game);
+		
+		em.flush();
+
+		return game;
+	}
+	
+	@Override
 	public Game updateGame(Game game) {
 		Game gameToUpdate = em.find(Game.class, game.getId());
 //		User winningUser = em.find(User.class, game.getWinner().getId());
@@ -158,8 +142,14 @@ public class TableTennisDAOImpl implements TableTennisDAO {
 		return gameToUpdate;
 	}
 	
-	
-
-
+	@Override
+	public boolean isGameDisabled(Game game) {
+		Game gameToUpdate = em.find(Game.class, game.getId());
+		gameToUpdate.setEnabled(false);
+		if(gameToUpdate.getEnabled() == false) {
+			return true;
+		}
+		else {return true;}
+	}
 
 }
