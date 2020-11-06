@@ -259,6 +259,15 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `tabletennisprojectdb`;
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (1, '123 Apple Street', 'New Orleans', 'LA', '70094', DEFAULT);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (2, '45 Lime Ave', 'Sarasota', 'FL', '54481', DEFAULT);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (3, '111 Orange Lane', 'Reno ', 'NV', '44313', DEFAULT);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (4, '781 Cantaloupe Blvd', 'Palm Beach ', 'FL', '30058', DEFAULT);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (5, '374 Banana St', 'Grayson', 'GA', '11144', DEFAULT);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (6, '32 Date Rd', 'Los Angeles', 'CA', '66532', DEFAULT);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (7, '12 Onion Ave', 'Las Vegas', 'NV', '32145', DEFAULT);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (8, '899 Ginger St', 'Phoenix', 'AZ', '85673', DEFAULT);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (9, '824 Asparagus Circle', 'Seattle ', 'WA', '48911', DEFAULT);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `enabled`) VALUES (10, '556 Bell Pepper Lane', 'Baltimore', 'MD', '90000', DEFAULT);
 
 COMMIT;
 
@@ -284,6 +293,16 @@ START TRANSACTION;
 USE `tabletennisprojectdb`;
 INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (1, 'ashley@email.com', 'admin', 1, 'admin', 'Ashley', 'Davis', 1, 1, 1, 1, 'https://en.wikipedia.org/wiki/File:Gambia_girl.jpg');
 INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (2, 'socrates@email.com', 'admin2', 1, NULL, 'Socrates', 'Epictetus', 1, 1, 1, 1, 'https://en.wikipedia.org/wiki/File:Laughing_boy_at_golden_hour.jpg');
+INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (DEFAULT, 'victorpride@email.com', 'victorpride', DEFAULT, NULL, 'Victor ', 'Pride', 1, DEFAULT, 2, 3, NULL);
+INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (DEFAULT, 'coreywayne@email.com', 'coreywayne', DEFAULT, NULL, 'Corey ', 'Wayne', DEFAULT, 1, 3, 4, NULL);
+INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (DEFAULT, 'rollotomassi@email', 'rollotomassi', DEFAULT, NULL, 'Rollo', 'Tomassi', 1, 1, 4, 2, NULL);
+INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (DEFAULT, 'daviddeida@email.com', 'daviddeida', DEFAULT, NULL, 'David', 'Deida', DEFAULT, 1, 5, 3, NULL);
+INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (DEFAULT, 'gregadams@email.com', 'gregadams', DEFAULT, NULL, 'Greg', 'Adams', 1, DEFAULT, 6, 2, NULL);
+INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (DEFAULT, 'anthonyjohnson@email.com', 'anthonyjohnson', DEFAULT, NULL, 'Anthony', 'Johnson', 1, DEFAULT, 7, 4, NULL);
+INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (DEFAULT, 'jeffreyepstein@email.com', 'jeffepstein', DEFAULT, NULL, 'Jeffrey', 'Epstein', DEFAULT, 1, 8, 2, NULL);
+INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (DEFAULT, 'johnwayne@email.com', 'johnwayne', DEFAULT, NULL, 'John', 'Wayne', 1, DEFAULT, 9, 4, NULL);
+INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (DEFAULT, 'geneautry@email.com', 'geneautry', DEFAULT, NULL, 'Gene', 'Autry', 1, 1, 10, 5, NULL);
+INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `role`, `first_name`, `last_name`, `host`, `travel`, `address_id`, `skill_level_id`, `profile_image_url`) VALUES (DEFAULT, 'clinteastwood@email.com', 'clinteastwood', DEFAULT, NULL, 'Clint', 'Eastwood', 1, DEFAULT, 10, 2, NULL);
 
 COMMIT;
 
