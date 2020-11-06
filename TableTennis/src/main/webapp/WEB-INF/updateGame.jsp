@@ -102,29 +102,30 @@
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="staticDate">Date</label> <input type="text"
-						class="form-control" id="staticEmail" value="${game.gameTime}"
-						name="gameTime" readonly>
+					<label for="parsedDate">Game Date</label><br>
+					<fmt:parseDate value="${game.gameTime}" type="date"
+						pattern="yyyy-MM-dd'T'HH:mm" var="parsedDate" />
+					<fmt:formatDate type="both" value="${parsedDate}"/>
 				</div>
 			</div>
-	<div class="form-row">
-		<div class="form-group col-md-6">
-			<label for="result">Result/Winner</label> <input type="text"
-				class="form-control" id="result" value="${game.result}"
-				name="result">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col">
-			<a class="btn btn-outline-primary my-2 my-sm-0" role="button" 
-			href="home.do">Cancel</a> 
-			<input class="btn btn-outline-primary my-2 my-sm-0" type="submit"
-				value="Update Game" /> 
-			<a class="btn btn-outline-primary my-2 my-sm-0" role="button"
-				href="deleteGame.do">Delete Game</a>
-		</div>
-	</div>
-	</form:form>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="result">Result/Winner</label> <input type="text"
+						class="form-control" id="result" value="${game.result}"
+						name="result">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<a class="btn btn-outline-primary my-2 my-sm-0" role="button"
+						href="home.do">Cancel</a> <input
+						class="btn btn-outline-primary my-2 my-sm-0" type="submit"
+						value="Update Game" /> <a
+						class="btn btn-outline-primary my-2 my-sm-0" role="button"
+						href="deleteGame.do">Delete Game</a>
+				</div>
+			</div>
+		</form:form>
 	</div>
 	<br>
 </body>
