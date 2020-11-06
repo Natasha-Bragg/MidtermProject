@@ -46,7 +46,7 @@ public class TableTennisController {
 	public String doLogin(Model model, @ModelAttribute("user") @Valid User user, Errors errors, HttpSession session) {
 		User loggedInUser = dao.getUserByEmail(user.getEmail());
 		if (loggedInUser == null) {
-			errors.rejectValue("email", "error.email", "Invalid email or password");
+			errors.rejectValue("email", "error.email", "No account found. Please create a profile.");
 		} else if (loggedInUser.getEnabled() == false) {
 			errors.rejectValue("enabled", "error.enabled", "Account disabled");
 		}
@@ -178,9 +178,8 @@ public class TableTennisController {
 	public String updateProfile(Model model, HttpSession session, Game game) {
 		if(session.getAttribute("loginUser") != null) {
 		Game g = dao.updateGame(game);
-		
 		model.addAttribute("user", session.getAttribute("loginUser"));
-		return "redirect:viewYourProfile.do";
+		return "redirect:home.do";
 		}
 		return null;
 	}

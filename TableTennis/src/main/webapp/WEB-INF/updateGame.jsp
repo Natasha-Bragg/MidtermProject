@@ -48,16 +48,13 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="btn btn-light my-2 my-sm-0"
 					role="button" href="viewYourProfile.do">View Your Profile</a></li>
-			</ul>
-		</div>
-		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a class="btn btn-light my-2 my-sm-0"
 					role="button" href="logout.do">Logout</a></li>
 			</ul>
 		</div>
 	</nav>
 	<br>
+	<h1>Update Game Result</h1>
 	<div class="container-fluid">
 		<form:form action="updateGame.do" modelAttribute="game">
 			<input type="hidden" name="id" value="${game.id}" />
@@ -87,20 +84,20 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="staticStreet">Street</label> <input type="text"
-						class="form-control" id="street" value="${user.address.street}"
+						class="form-control" id="street" value="${game.address.street}"
 						name="address.street" readonly>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-3">
 					<label for="staticCity">City</label> <input type="text"
-						class="form-control" id="city" value="${user.address.city}"
+						class="form-control" id="city" value="${game.address.city}"
 						name="address.city" readonly>
 				</div>
 				<div class="form-group col-md-3">
 					<label for="staticState">State</label> <input type="text"
 						id="state" maxlength="2" class="form-control"
-						value="${user.address.state}" name="address.state" readonly>
+						value="${game.address.state}" name="address.state" readonly>
 				</div>
 			</div>
 			<div class="form-row">
@@ -128,6 +125,7 @@
 		</div>
 	</div>
 	</form:form>
+	</div>
 	<br>
 </body>
 </html>
