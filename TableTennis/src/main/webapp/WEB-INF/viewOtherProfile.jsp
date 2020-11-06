@@ -84,10 +84,10 @@
 		<div class="form-check">
 			<c:choose>
 				<c:when test="${user.host}">
-					<input type="checkbox" readonly id="staticHost" value="" checked >
+					<input type="checkbox" readonly id="staticHost" value="" checked disabled>
 				</c:when>
 				<c:when test="${!user.host}">
-					<input type="checkbox" readonly id="staticHost" value="" >
+					<input type="checkbox" readonly id="staticHost" value="" disabled>
 				</c:when>
 			</c:choose>
 		<label for="staticHost">Host</label>
@@ -99,10 +99,10 @@
 			<div class="form-check">
 				<c:choose>
 					<c:when test="${user.travel}">
-						<input type="checkbox" readonly id="staticTravel" value="" checked>
+						<input type="checkbox" readonly id="staticTravel" value="" checked disabled>
 					</c:when>
 					<c:when test="${!user.travel}">
-						<input type="checkbox" readonly id="staticTravel" value="">
+						<input type="checkbox" readonly id="staticTravel" value="" disabled>
 					</c:when>
 				</c:choose>
 			<label for="staticTravel">Travel</label>
