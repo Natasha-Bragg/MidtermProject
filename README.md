@@ -4,10 +4,10 @@
 
 Team members and roles:
 
-Jeanne Wolcott - (Lead Developer)
-Ashley Davis - (Developer, DBA)
-Natasha Bragg - (Developer, Repo Owner)
-Jess Tucker - (Developer, Scrum Master)
+* Jeanne Wolcott - (Lead Developer)
+* Ashley Davis - (Developer, DBA)
+* Natasha Bragg - (Developer, Repo Owner)
+* Jess Tucker - (Developer, Scrum Master)
 
 ### Overview
 
