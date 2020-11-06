@@ -35,9 +35,6 @@
 				<li class="nav-item active"><a class="navbar-brand mx-auto"
 					href="#"><img src="logo.png" width="30" height="30" alt="logo"
 						loading="lazy"></a></li>
-				<li class="nav-item"><a class="nav-link" href="#"><img
-						src="logo2.png" width="30" height="30" alt="logo" loading="lazy"></a>
-				</li>
 			</ul>
 		</div>
 		<div class="mx-auto order-0">
@@ -49,8 +46,6 @@
 		</div>
 		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="btn btn-light my-2 my-sm-0"
-					role="button" href="showCreateProfile.do">Create Profile</a></li>
 				<li class="nav-item"><a class="btn btn-light my-2 my-sm-0"
 					role="button" href="login.do">Login</a></li>
 			</ul>
