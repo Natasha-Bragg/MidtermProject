@@ -134,7 +134,7 @@ public class TableTennisController {
 		
 		session.setAttribute("loginUser", u);
 		model.addAttribute("user", u);
-		return "viewYourProfile";
+		return "redirect:viewYourProfile.do";
 	}
 	
 	@RequestMapping(path = "deleteProfile.do")
